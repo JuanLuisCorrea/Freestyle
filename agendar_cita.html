@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <title>Agendar cita</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <form id="formulario" action="ControladorAgendar.php" method="POST">
+            <fieldset>
+                <legend>Agendar cita</legend>
+                Servicios
+                <br>
+                <label>
+                    <input name="corte_de_pelo" id="corte_de_pelo" type="checkbox">
+                    Corte de pelo
+                </label>
+                <label>
+                    <input name="corte_de_barba" name="corte_de_barba" type="checkbox">
+                    Corte de barba
+                </label>
+                <br>
+                <label>
+                    <input name="mascarilla_facial" name="mascarilla_facial" type="checkbox">
+                    Mascarilla facial
+                </label>
+                <label>
+                    <input name="cejas" name="cejas" type="checkbox">
+                    Cejas
+                </label>
+                <br>
+                <label>
+                    Fecha
+                    <input name="date" name="date" type="date">
+                </label>
+                <br>
+                <label>
+                    Hora
+                    <input name="hour" name="hour" type="time">
+                </label>
+                <br>
+                <input type="submit" value="Agendar cita">
+            </fieldset>
+        </form>
+    </body>
+</html>
