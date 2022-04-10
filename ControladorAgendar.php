@@ -17,6 +17,8 @@
   $password = "";
   $dbname = "freestyle";
   $conn = new mysqli($servername, $username, $password, $dbname);
+
+  //Calcular duración de la cita según los servicios
   if(isset($_REQUEST["corte_de_pelo"])){
     $sql = "SELECT Duration_Service FROM servicio WHERE Type_Service ='Corte de cabello'";
     
@@ -55,6 +57,7 @@
     $duracion_total = $duracion_total + intval($duracion["Duration_Service"]);
   }
 
+  //Insertar cita en la base de datos
   $sql = "INSERT INTO cita(Client,Date,Hour,Duration) values('".$cc."','".$date."','".$hour."','".$duracion_total."')";
     if($conn->query($sql) === TRUE) {
       include("menu.html");
