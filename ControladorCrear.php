@@ -20,21 +20,25 @@
 
   //Crear conexión
   $conn = new mysqli($servername, $username, $password, $dbname);
+  
 
-  $sql = "INSERT INTO client(cedula,name,telephone,email,date,Contraseña) values('".$identification."','".$name."','".$telephone."','".$email."','".$birthday."','".$pass."')";
+  $sql = "SELECT * FROM client WHERE Email='".$email."' OR Cedula='".$identification."'";
+  $result = $conn->query($sql);
+  $fila = $result->fetch_assoc();
+  if($fila==false){
+    $sql = "INSERT INTO client(cedula,name,telephone,email,date,Contraseña) values('".$identification."','".$name."','".$telephone."','".$email."','".$birthday."','".$pass."')";
     if($conn->query($sql) === TRUE) {
       include("index.php");
-      
       echo "Registro exitoso!";
-
-
-    
     }
     else {
       echo "Error ".$conn->error;
     }
-
-    $conn->close();
+  }else {
+    include("registro.php");
+    echo "No se pudo registrar, Email o Cédula ya existentes";
+  }
+  $conn->close();
   ?>
 
   
