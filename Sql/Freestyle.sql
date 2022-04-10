@@ -20,14 +20,18 @@ USE `freestyle`;
 -- Volcando estructura para tabla freestyle.cita
 CREATE TABLE IF NOT EXISTS `cita` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Client` varchar(11) DEFAULT NULL,
   `Date` varchar(30) DEFAULT NULL,
   `Hour` time DEFAULT NULL,
   `Duration` int(11) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
 
 -- Volcando datos para la tabla freestyle.cita: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `cita` DISABLE KEYS */;
+REPLACE INTO `cita` (`ID`, `Client`, `Date`, `Hour`, `Duration`) VALUES
+	(12, '112223433', '2022-04-26', '11:59:00', 70),
+	(13, '112223433', '2022-04-12', '12:01:00', 40);
 /*!40000 ALTER TABLE `cita` ENABLE KEYS */;
 
 -- Volcando estructura para tabla freestyle.client
@@ -40,13 +44,13 @@ CREATE TABLE IF NOT EXISTS `client` (
   `Cedula` varchar(11) DEFAULT NULL,
   `Contraseña` varchar(50) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla freestyle.client: ~5 rows (aproximadamente)
+-- Volcando datos para la tabla freestyle.client: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `client` DISABLE KEYS */;
 REPLACE INTO `client` (`ID`, `Name`, `Telephone`, `Email`, `Date`, `Cedula`, `Contraseña`) VALUES
 	(5, 'sdfds', 1323213, 'dfdsdsf@sfa.com', '2022-04-05', '12123312', 'fa3qw3f'),
-	(6, '', 0, '', '0000-00-00', '', '');
+	(7, 'Juan Correa', 123123123, 'jucs0709@gmail.com', '2022-04-08', '112223433', 'asdasd');
 /*!40000 ALTER TABLE `client` ENABLE KEYS */;
 
 -- Volcando estructura para tabla freestyle.factura

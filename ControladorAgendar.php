@@ -2,9 +2,10 @@
   <body>
     
 <?php
-  
-  //Datos formulario
-  
+  session_start();
+
+  //Datos cita
+  $cc = $_SESSION["Cedula"];
   $date = $_POST["date"];
   $hour = $_POST["hour"];
   $duracion = 0;
@@ -53,17 +54,11 @@
     
     $duracion_total = $duracion_total + intval($duracion["Duration_Service"]);
   }
-  //Crear conexión
-  
 
-  $sql = "INSERT INTO cita(Date,Hour,Duration) values('".$date."','".$hour."','".$duracion_total."')";
+  $sql = "INSERT INTO cita(Client,Date,Hour,Duration) values('".$cc."','".$date."','".$hour."','".$duracion_total."')";
     if($conn->query($sql) === TRUE) {
       include("menu.html");
-      
       echo "Cita agendada!";
-
-
-    
     }
     else {
       echo "Error ".$conn->error;
