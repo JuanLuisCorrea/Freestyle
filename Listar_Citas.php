@@ -11,7 +11,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT * from Client";
+$sql = "SELECT * from cita";
 $result = $conn->query($sql);
 
 /* * *******************************
@@ -42,14 +42,14 @@ if ($result->num_rows > 0) {
     echo "</tr>";
 
     $fila = 1;
-    while ($row = $result->num_rows) {
+    while ($row = $result->fetch_assoc()) {
         if ($fila % 2 == 0) {
             echo "<tr BGCOLOR=\"#D3D3D3\">\n";
         } else {
             echo "<tr>\n";
         }
 
-        echo "<td>" . $row["ID"] . "</td>\n<td>" . $row["Client"] . "</td>\n<td>" . $row["Date"] . "</td>\n<td>" . $row["Hour"] . "</td>\n<td>" . $row["duracion"] . "</td>";
+        echo "<td>" . $row["ID"] . "</td>\n<td>" . $row["Client"] . "</td>\n<td>" . $row["Date"] . "</td>\n<td>" . $row["Hour"] . "</td>\n<td>" . $row["Duration"] . "</td>";
         echo "</tr>\n";
         $fila = $fila + 1;
     }
