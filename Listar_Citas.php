@@ -1,4 +1,7 @@
 <?php
+session_start();
+$cedula = $_SESSION["Cedula"];
+
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -11,7 +14,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT * from cita";
+$sql = "SELECT * from cita WHERE Client='".$cedula."'";
 $result = $conn->query($sql);
 
 /* * *******************************
@@ -65,5 +68,5 @@ if ($result->num_rows > 0) {
 $conn->close();
 ?>
 <br>
-<center><a href="index.php">Inicio</a>
+<center><a href="menu.html">Home</a>
 </center>
