@@ -12,6 +12,16 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
 if(isset($_GET['id'])){
     $id = $_GET['id'];
+    $sql = "SELECT * from cita WHERE ID='$id'";
+    $result = $conn->query($sql);
+
+    if($result->num_rows == 1){
+        $row = mysqli_fetch_array($result);
+        
+        $date = $row['Date'];
+        $hour = $row['Hour'];
+        
+    }
 }
 
 ?>
@@ -22,9 +32,26 @@ if(isset($_GET['id'])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Editar cita</title>
 </head>
 <body>
-    
+<div class="register">
+            <form action="Update.php?id=<?php echo $_GET['id']; ?> " method="GET">
+                <fieldset>
+                    <legend>Editar cita</legend>
+                    <label>
+                        Fecha
+                        <input id="date" name="date" type="date" value ="<?php echo $date; ?> ">
+                    </label>
+                    <br>
+                    <label>
+                        Hora
+                        <input id="hora" name="hora" type="time" value ="<?php echo $hour; ?> ">
+                    </label>
+                    <br>
+                    <input type="submit" value="Editar">
+                </fieldset> 
+            </form>
+        </div>
 </body>
 </html>
