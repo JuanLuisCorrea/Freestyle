@@ -2,8 +2,6 @@
 session_start();
 $cedula = $_SESSION["Cedula"];
 
-
-
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -16,16 +14,16 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-if(isset($_GET['ID'])){
-    $id = $_GET['ID'];
-    $sql = "DELETE * from cita WHERE ID =".$id;
+
+    $id = $_GET['id'];
+    $sql = "DELETE from cita WHERE ID = '$id'";
     $result = $conn->query($sql);
     if(!$result){
         die("Delete fallido!");
     }
 
     header("Location: Listar_Citas.php");
-}
+
 
 
 ?>
