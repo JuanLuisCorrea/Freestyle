@@ -28,6 +28,7 @@ echo "\t<head>\n";
 echo "\t\t<title>Mis citas</title>\n";
 echo "\t\t<meta http-equiv= \"refresh\" content=\"5\" />\n";
 echo "\t\t<meta charset=\"UTF-8\"/>\n";
+//echo "\t\t<link href="."\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css\"" . "rel=\"stylesheet\""." integrity="."\"sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3\"" . "crossorigin="."\"anonymous\"".">";
 echo "\t</head>\n";
 echo "\t<body>\n";
 
@@ -40,7 +41,6 @@ if ($result->num_rows > 0) {
     echo "<td>Fecha</td>\n";
     echo "<td>Hora</td>\n";
     echo "<td>Duracion</td>\n";
-    echo "<td>Duracion total</td>\n";
     echo "<td colspan=\"2\">Acción</td>\n";
     echo "</tr>";
 
@@ -52,7 +52,7 @@ if ($result->num_rows > 0) {
             echo "<tr>\n";
         }
 
-        echo "<td>" . $row["ID"] . "</td>\n<td>" . $row["Client"] . "</td>\n<td>" . $row["Date"] . "</td>\n<td>" . $row["Hour"] . "</td>\n<td>" . $row["Duration"] . "</td>";
+        echo "<td>" . $row["ID"] . "</td>\n<td>" . $row["Client"] . "</td>\n<td>" . $row["Date"] . "</td>\n<td>" . $row["Hour"] . "</td>\n<td>" . $row["Duration"] . "</td>\n<td><a href=\"delete.php?id=" . $row["ID"] . "\">Delete </td> <td> <a href=\"update.php?id=" . $row["ID"] . "\">Update </td>\n";
         echo "</tr>\n";
         $fila = $fila + 1;
     }
