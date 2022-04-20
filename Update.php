@@ -12,15 +12,14 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
 if(isset($_GET['id'])){
     $id = $_GET['id'];
-    $sql = "SELECT * from cita WHERE ID='$id'";
+    $sql = "SELECT * from cita WHERE ID ='$id'";
     $result = $conn->query($sql);
 
     if($result->num_rows == 1){
-        $row = mysqli_fetch_array($result);
-        
-        $date = $row['Date'];
+        $row = $result->fetch_assoc();       
+        $Date = $row['Date'];
         $hour = $row['Hour'];
-        
+   
     }
 }
 
@@ -36,7 +35,7 @@ if(isset($_GET['id'])){
 </head>
 <body>
 <div class="register">
-            <form action="Update.php?id=<?php echo $_GET['id']; ?> " method="GET">
+            <form action="Update_Controlador.php?id=<?php echo $_GET['id']; ?> " method="GET">
                 <fieldset>
                     <legend>Editar cita</legend>
                     <label>
