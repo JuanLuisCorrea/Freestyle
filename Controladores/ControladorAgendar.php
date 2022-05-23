@@ -12,10 +12,7 @@
   $duracion_total = 0;
  
   //Base de datos
-  $servername = "localhost";
-  $username = "root";
-  $password = "";
-  $dbname = "freestyle";
+  include '../Sql/db.php';
   $conn = new mysqli($servername, $username, $password, $dbname);
 
   //Validar que la hora de la cita esté libre
@@ -23,7 +20,7 @@
   $result = $conn->query($sql);
   $fila = $result->fetch_assoc();
   if($fila==true) {
-    include("agendar_cita.html");
+    include("../CRUD/agendar_cita.html");
     echo "Hora no disponible";
   }
   else {
@@ -56,8 +53,11 @@
     //Insertar cita en la base de datos
     $sql = "INSERT INTO cita(Client,Date,Hour,Duration) values('".$cc."','".$date."','".$hour."','".$duracion_total."')";
     if($conn->query($sql) === TRUE) {
-      include("menu.html");
+      include("../CRUD/agendar_cita.html");
+      echo "<br>";
       echo "Cita agendada!";
+      echo "<br>";
+      echo "<a href=\"../menu.html\">Menú</a>";
     }
     else {
       echo "Error ".$conn->error;

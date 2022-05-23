@@ -6,7 +6,7 @@
     </head>
     <body>
         <div class="register">
-            <form action="ControladorCrear.php" method="GET">
+            <form action="../Controladores/ControladorRegistro.php" method="GET">
                 <fieldset>
                     <legend>Registro Clientes</legend>
                     <label>

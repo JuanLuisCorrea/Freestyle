@@ -6,7 +6,7 @@
     </head>
     <body>
         <div class="login">
-            <form action="Controlador.php" method="GET">
+            <form action="Controladores/ControladorLogin.php" method="GET">
                 <fieldset>
                     <legend>Login Clientes</legend>
                     <label>
@@ -20,7 +20,7 @@
                     </label>
                     <br>
                     <input type="submit" value="Ingresar">
-                    <p>¿Cliente nuevo? <a href="registro.php">Registrarse</a></p>
+                    <p>¿Cliente nuevo? <a href="CRUD/Registro.php">Registrarse</a></p>
                 </fieldset> 
             </form>
         </div>

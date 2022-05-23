@@ -7,10 +7,7 @@
       $email = $_GET["Email"];
       
       //Conectar a la base de datos
-      $password = "";
-      $dbname = "freestyle";
-      $servername = "localhost";
-      $username= "root";   
+      include '../Sql/db.php'; 
       $conn = new mysqli($servername, $username, $password, $dbname); 
       
       //Autenticar cliente
@@ -18,7 +15,7 @@
       $result = $conn->query($sql);
       $fila = $result->fetch_assoc();
       if ($fila==false) {
-        include("index.php");
+        include("../index.php");
         echo "Error de autenticación";
       }
       else {
@@ -31,7 +28,7 @@
         $cedula = $result->fetch_assoc();
         $_SESSION["Cedula"] = $cedula["Cedula"];
 
-        header("Location: menu.html");
+        header("Location: ../menu.html");
       }
 
       $conn->close();

@@ -11,12 +11,8 @@
   $email = $_GET["email"];
   $birthday = $_GET["birthday"];
 
-
   //Base de datos
-  $servername = "localhost";
-  $username = "root";
-  $password = "";
-  $dbname = "freestyle";
+  include '../Sql/db.php';
 
   //Crear conexión
   $conn = new mysqli($servername, $username, $password, $dbname);
@@ -28,15 +24,19 @@
   if($fila==false){
     $sql = "INSERT INTO client(cedula,name,telephone,email,date,Contraseña) values('".$identification."','".$name."','".$telephone."','".$email."','".$birthday."','".$pass."')";
     if($conn->query($sql) === TRUE) {
-      include("index.php");
+      include("../CRUD/Registro.php");
       echo "Registro exitoso!";
+      echo "<br>";
+      echo "<a href=\"../index.php\">Login</a>";
     }
     else {
       echo "Error ".$conn->error;
     }
   }else {
-    include("registro.php");
+    include("../CRUD/Registro.php");
     echo "No se pudo registrar, Email o Cédula ya existentes";
+    echo "<br>";
+    echo "<a href=\"../index.php\">Login</a>";
   }
   $conn->close();
   ?>

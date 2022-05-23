@@ -2,10 +2,7 @@
 session_start();
 $cedula = $_SESSION["Cedula"];
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "freestyle";
+include '../Sql/db.php';
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -24,8 +21,7 @@ if(isset($_GET['id'])){
     }
 
     header("Location: Listar_Citas.php");
-
-    }
+}
 
 
 ?>
