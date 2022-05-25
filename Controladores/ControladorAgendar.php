@@ -55,7 +55,8 @@
       $duracion_total = $duracion_total + intval($duracion["Duration_Service"]);
       $services = $services."Cejas,";
     }
-
+    $services = substr($services, 0, -1);
+    
     //Calcular hora de salida según la duración de la cita
     $finish_hour = strtotime("+".$duracion_total." minute", strtotime($hour));
     $finish_hour = date('H:i:s', $finish_hour);
