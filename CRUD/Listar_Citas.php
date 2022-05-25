@@ -2,11 +2,11 @@
 session_start();
 $cedula = $_SESSION["Cedula"];
 
+// Base de datos
 include '../Sql/db.php';
-
-// Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
+
+// Verificar conexión
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
@@ -34,8 +34,10 @@ if ($result->num_rows > 0) {
     echo "<tr BGCOLOR=\"#D3D3D3\">\n";
     echo "<td>id</td>\n";
     echo "<td>Cedula</td>\n";
+    echo "<td>Servicios</td>\n";
     echo "<td>Fecha</td>\n";
     echo "<td>Hora</td>\n";
+    echo "<td>Hora de salida</td>\n";
     echo "<td>Duracion</td>\n";
     echo "<td colspan=\"2\">Acción</td>\n";
     echo "</tr>";
@@ -48,7 +50,7 @@ if ($result->num_rows > 0) {
             echo "<tr>\n";
         }
 
-        echo "<td>" . $row["ID"] . "</td>\n<td>" . $row["Client"] . "</td>\n<td>" . $row["Date"] . "</td>\n<td>" . $row["Hour"] . "</td>\n<td>" . $row["Duration"] . "</td>\n<td><a href=\"Delete.php?id=" . $row["ID"] . "\">Delete </td> <td> <a href=\"Update.php?id=" . $row["ID"] . "\">Update </td>\n";
+        echo "<td>" . $row["ID"] . "</td>\n<td>" . $row["Client"] . "</td>\n<td>" . $row["Services"] . "</td>\n<td>" . $row["Date"] . "</td>\n<td>" . $row["Hour"] . "</td>\n<td>" . $row["Finish_Hour"] . "</td>\n<td>" . $row["Duration"]." minutos" . "</td>\n<td><a href=\"Delete.php?id=" . $row["ID"] . "\">Delete </td> <td> <a href=\"Update.php?id=" . $row["ID"] . "\">Update </td>\n";
         echo "</tr>\n";
         $fila = $fila + 1;
     }

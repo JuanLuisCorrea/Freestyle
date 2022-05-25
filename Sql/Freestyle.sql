@@ -21,17 +21,19 @@ USE `freestyle`;
 CREATE TABLE IF NOT EXISTS `cita` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Client` varchar(11) DEFAULT NULL,
+  `Services` varchar(75) DEFAULT NULL,
   `Date` varchar(30) DEFAULT NULL,
   `Hour` time DEFAULT NULL,
+  `Finish_Hour` time DEFAULT NULL,
   `Duration` int(11) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4;
 
 -- Volcando datos para la tabla freestyle.cita: ~0 rows (aproximadamente)
+DELETE FROM `cita`;
 /*!40000 ALTER TABLE `cita` DISABLE KEYS */;
-REPLACE INTO `cita` (`ID`, `Client`, `Date`, `Hour`, `Duration`) VALUES
-	(12, '112223433', '2022-04-26', '11:59:00', 70),
-	(13, '112223433', '2022-04-12', '12:01:00', 40);
+INSERT INTO `cita` (`ID`, `Client`, `Services`, `Date`, `Hour`, `Finish_Hour`, `Duration`) VALUES
+	(43, '112223433', 'Corte de cabello,Corte barba,', '2022-05-26', '15:00:00', '16:20:00', 80);
 /*!40000 ALTER TABLE `cita` ENABLE KEYS */;
 
 -- Volcando estructura para tabla freestyle.client
@@ -44,13 +46,16 @@ CREATE TABLE IF NOT EXISTS `client` (
   `Cedula` varchar(11) DEFAULT NULL,
   `Contraseña` varchar(50) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla freestyle.client: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla freestyle.client: ~3 rows (aproximadamente)
+DELETE FROM `client`;
 /*!40000 ALTER TABLE `client` DISABLE KEYS */;
-REPLACE INTO `client` (`ID`, `Name`, `Telephone`, `Email`, `Date`, `Cedula`, `Contraseña`) VALUES
+INSERT INTO `client` (`ID`, `Name`, `Telephone`, `Email`, `Date`, `Cedula`, `Contraseña`) VALUES
 	(5, 'sdfds', 1323213, 'dfdsdsf@sfa.com', '2022-04-05', '12123312', 'fa3qw3f'),
-	(7, 'Juan Correa', 123123123, 'jucs0709@gmail.com', '2022-04-08', '112223433', 'asdasd');
+	(7, 'Juan Correa', 123123123, 'jucs0709@gmail.com', '2022-04-08', '112223433', 'asdasd'),
+	(8, 'Luis Correa', 2147483647, 'luis@gmail.com', '2022-04-10', '123456', 'dsadsa'),
+	(10, 'nombre', 111, 'correo@correo.com', '2003-05-22', '333', '222');
 /*!40000 ALTER TABLE `client` ENABLE KEYS */;
 
 -- Volcando estructura para tabla freestyle.factura
@@ -64,6 +69,7 @@ CREATE TABLE IF NOT EXISTS `factura` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Volcando datos para la tabla freestyle.factura: ~0 rows (aproximadamente)
+DELETE FROM `factura`;
 /*!40000 ALTER TABLE `factura` DISABLE KEYS */;
 /*!40000 ALTER TABLE `factura` ENABLE KEYS */;
 
@@ -78,8 +84,9 @@ CREATE TABLE IF NOT EXISTS `servicio` (
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
 -- Volcando datos para la tabla freestyle.servicio: ~4 rows (aproximadamente)
+DELETE FROM `servicio`;
 /*!40000 ALTER TABLE `servicio` DISABLE KEYS */;
-REPLACE INTO `servicio` (`ID`, `Price`, `Type_Service`, `Duration_Service`, `Employee`) VALUES
+INSERT INTO `servicio` (`ID`, `Price`, `Type_Service`, `Duration_Service`, `Employee`) VALUES
 	(1, 12000, 'Corte de cabello', 60, 'Juancho'),
 	(2, 7000, 'Corte barba', 20, 'Juan Diego'),
 	(3, 8000, 'Mascarilla facial', 20, 'Luis'),
