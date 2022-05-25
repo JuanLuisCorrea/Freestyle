@@ -34,6 +34,26 @@ if(isset($_GET['id'])){
         <form action="../Controladores/ControladorUpdate.php?" method="GET">
             <fieldset>
                 <legend>Editar cita</legend>
+                Servicios
+                <br>
+                <label>
+                    <input name="corte_de_pelo" id="corte_de_pelo" type="checkbox">
+                    Corte de pelo
+                </label>
+                <label>
+                    <input name="corte_de_barba" name="corte_de_barba" type="checkbox">
+                    Corte de barba
+                </label>
+                <br>
+                <label>
+                    <input name="mascarilla_facial" name="mascarilla_facial" type="checkbox">
+                    Mascarilla facial
+                </label>
+                <label>
+                    <input name="cejas" name="cejas" type="checkbox">
+                    Cejas
+                </label>
+                <br>
                 <label>
                     Fecha
                     <input id="Date" name="Date" type="date" value ="<?php echo $Date; ?> ">
