@@ -19,13 +19,13 @@ if ($conn->connect_error) {
 } 
 
 //Validar que la hora de la cita esté libre
-$sql = "SELECT * FROM cita WHERE Hour='".$Hour."' AND Date='".$Date."'";
+$sql = "SELECT * FROM cita WHERE Date='".$Date."' AND HOUR<='".$Hour."' AND Finish_Hour>'".$Hour."'";
 $result = $conn->query($sql);
 $fila = $result->fetch_assoc();
 if($fila==true) {
   include("../CRUD/Update.php");
   echo "Hora no disponible";
-} 
+}
 else { //Agendar cita si está disponible
   //Calcular duración de la cita
   if(isset($_REQUEST["corte_de_pelo"])){

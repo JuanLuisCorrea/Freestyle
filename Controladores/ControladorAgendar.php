@@ -18,7 +18,7 @@
   $conn = new mysqli($servername, $username, $password, $dbname);
 
   //Validar que la hora de la cita esté libre
-  $sql = "SELECT * FROM cita WHERE Hour='".$hour."' AND Date='".$date."'";
+  $sql = "SELECT * FROM cita WHERE Date='".$date."' AND HOUR<='".$hour."' AND Finish_Hour>'".$hour."'";
   $result = $conn->query($sql);
   $fila = $result->fetch_assoc();
   if($fila==true) {
@@ -56,7 +56,7 @@
       $services = $services."Cejas,";
     }
     $services = substr($services, 0, -1);
-    
+
     //Calcular hora de salida según la duración de la cita
     $finish_hour = strtotime("+".$duracion_total." minute", strtotime($hour));
     $finish_hour = date('H:i:s', $finish_hour);
