@@ -27,13 +27,11 @@ CREATE TABLE IF NOT EXISTS `cita` (
   `Finish_Hour` time DEFAULT NULL,
   `Duration` int(11) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4;
 
 -- Volcando datos para la tabla freestyle.cita: ~0 rows (aproximadamente)
 DELETE FROM `cita`;
 /*!40000 ALTER TABLE `cita` DISABLE KEYS */;
-INSERT INTO `cita` (`ID`, `Client`, `Services`, `Date`, `Hour`, `Finish_Hour`, `Duration`) VALUES
-	(43, '112223433', 'Corte de cabello,Corte barba,', '2022-05-26', '15:00:00', '16:20:00', 80);
 /*!40000 ALTER TABLE `cita` ENABLE KEYS */;
 
 -- Volcando estructura para tabla freestyle.client
@@ -45,17 +43,16 @@ CREATE TABLE IF NOT EXISTS `client` (
   `Date` date DEFAULT NULL,
   `Cedula` varchar(11) DEFAULT NULL,
   `Contraseña` varchar(50) NOT NULL,
+  `administrador` int(1) unsigned zerofill DEFAULT 0,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla freestyle.client: ~3 rows (aproximadamente)
+-- Volcando datos para la tabla freestyle.client: ~0 rows (aproximadamente)
 DELETE FROM `client`;
 /*!40000 ALTER TABLE `client` DISABLE KEYS */;
-INSERT INTO `client` (`ID`, `Name`, `Telephone`, `Email`, `Date`, `Cedula`, `Contraseña`) VALUES
-	(5, 'sdfds', 1323213, 'dfdsdsf@sfa.com', '2022-04-05', '12123312', 'fa3qw3f'),
-	(7, 'Juan Correa', 123123123, 'jucs0709@gmail.com', '2022-04-08', '112223433', 'asdasd'),
-	(8, 'Luis Correa', 2147483647, 'luis@gmail.com', '2022-04-10', '123456', 'dsadsa'),
-	(10, 'nombre', 111, 'correo@correo.com', '2003-05-22', '333', '222');
+INSERT INTO `client` (`ID`, `Name`, `Telephone`, `Email`, `Date`, `Cedula`, `Contraseña`, `administrador`) VALUES
+	(11, 'Juan Correa', 2147483647, 'jucs0709@gmail.com', '2003-09-07', '1193364423', 'asdasd', 1),
+	(12, 'Luis', 123123123, 'luis@email.com', '2022-05-27', '111222333', 'qwerty', 0);
 /*!40000 ALTER TABLE `client` ENABLE KEYS */;
 
 -- Volcando estructura para tabla freestyle.factura

@@ -1,6 +1,7 @@
 <?php
 session_start();
 $cedula = $_SESSION["Cedula"];
+$admin = $_SESSION["admin"];
 
 // Base de datos
 include '../Sql/db.php';
@@ -10,10 +11,13 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-
-$sql = "SELECT * from cita WHERE Client='".$cedula."'";
-$result = $conn->query($sql);
-
+if($admin!=1) {
+    $sql = "SELECT * from cita WHERE Client='".$cedula."'";
+    $result = $conn->query($sql);
+} else {
+    $sql = "SELECT * from cita";
+    $result = $conn->query($sql);
+}
 /* * *******************************
 
   CREAR TABLA DINAMICA

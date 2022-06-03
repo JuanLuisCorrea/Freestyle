@@ -19,6 +19,11 @@
                         <input name="Pass" type="password" placeholder="Contraseña">
                     </label>
                     <br>
+                    <label>
+                        <input name="admin" name="admin" type="checkbox">
+                        Admin
+                    </label>
+                    <br><br>
                     <input type="submit" value="Ingresar">
                     <p>¿Cliente nuevo? <a href="CRUD/Registro.php">Registrarse</a></p>
                 </fieldset> 
