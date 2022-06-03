@@ -11,17 +11,13 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-
-if(isset($_GET['id'])){
+if (isset($_GET['id'])) {
     $id = $_GET['id'];
     $sql = "DELETE from cita WHERE ID = '$id'";
     $result = $conn->query($sql);
-    if(!$result){
+    if (!$result) {
         die("Delete fallido!");
     }
 
     header("Location: Listar_Citas.php");
 }
-
-
-?>

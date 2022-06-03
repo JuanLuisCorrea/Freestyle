@@ -80,4 +80,3 @@ else { //Agendar cita si está disponible
 
 
 $conn->close();
-?>

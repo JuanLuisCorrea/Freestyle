@@ -1,8 +1,9 @@
 <html>
-  <body>
-    
+
+<body>
+
   <?php
-  
+
   //Datos formulario
   $identification = $_GET["identification"];
   $name = $_GET["name"];
@@ -16,23 +17,22 @@
 
   //Crear conexión
   $conn = new mysqli($servername, $username, $password, $dbname);
-  
 
-  $sql = "SELECT * FROM client WHERE Email='".$email."' OR Cedula='".$identification."'";
+
+  $sql = "SELECT * FROM client WHERE Email='" . $email . "' OR Cedula='" . $identification . "'";
   $result = $conn->query($sql);
   $fila = $result->fetch_assoc();
-  if($fila==false){
-    $sql = "INSERT INTO client(cedula,name,telephone,email,date,Contraseña) values('".$identification."','".$name."','".$telephone."','".$email."','".$birthday."','".$pass."')";
-    if($conn->query($sql) === TRUE) {
+  if ($fila == false) {
+    $sql = "INSERT INTO client(cedula,name,telephone,email,date,Contraseña) values('" . $identification . "','" . $name . "','" . $telephone . "','" . $email . "','" . $birthday . "','" . $pass . "')";
+    if ($conn->query($sql) === TRUE) {
       include("../CRUD/Registro.php");
       echo "Registro exitoso!";
       echo "<br>";
       echo "<a href=\"../index.php\">Login</a>";
+    } else {
+      echo "Error " . $conn->error;
     }
-    else {
-      echo "Error ".$conn->error;
-    }
-  }else {
+  } else {
     include("../CRUD/Registro.php");
     echo "No se pudo registrar, Email o Cédula ya existentes";
     echo "<br>";
@@ -41,6 +41,7 @@
   $conn->close();
   ?>
 
-  
-  </body>
+
+</body>
+
 </html>

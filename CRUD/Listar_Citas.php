@@ -11,8 +11,8 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-if($admin!=1) {
-    $sql = "SELECT * from cita WHERE Client='".$cedula."'";
+if ($admin != 1) {
+    $sql = "SELECT * from cita WHERE Client='" . $cedula . "'";
     $result = $conn->query($sql);
 } else {
     $sql = "SELECT * from cita";
@@ -54,7 +54,7 @@ if ($result->num_rows > 0) {
             echo "<tr>\n";
         }
 
-        echo "<td>" . $row["ID"] . "</td>\n<td>" . $row["Client"] . "</td>\n<td>" . $row["Services"] . "</td>\n<td>" . $row["Date"] . "</td>\n<td>" . $row["Hour"] . "</td>\n<td>" . $row["Finish_Hour"] . "</td>\n<td>" . $row["Duration"]." minutos" . "</td>\n<td><a href=\"Delete.php?id=" . $row["ID"] . "\">Delete </td> <td> <a href=\"Update.php?id=" . $row["ID"] . "\">Update </td>\n";
+        echo "<td>" . $row["ID"] . "</td>\n<td>" . $row["Client"] . "</td>\n<td>" . $row["Services"] . "</td>\n<td>" . $row["Date"] . "</td>\n<td>" . $row["Hour"] . "</td>\n<td>" . $row["Finish_Hour"] . "</td>\n<td>" . $row["Duration"] . " minutos" . "</td>\n<td><a href=\"Delete.php?id=" . $row["ID"] . "\">Borrar </td> <td> <a href=\"Update.php?id=" . $row["ID"] . "\">Editar </td>\n";
         echo "</tr>\n";
         $fila = $fila + 1;
     }
@@ -62,7 +62,6 @@ if ($result->num_rows > 0) {
     echo "<br>";
     echo "<a href=\"../menu.html\">Menú</a>";
     echo "</div>\n";
-    
 } else {
     echo "Aún no tienes citas agendadas!";
     echo "<br>";
@@ -73,4 +72,3 @@ echo "</body>\n";
 echo "</html>\n";
 
 $conn->close();
-?>
