@@ -28,6 +28,7 @@
       $result = $conn->query($sql);
       $admin = $result->fetch_assoc();
       $_SESSION["admin"] = 1;
+      $_SESSION["Cedula"] = $admin["Cedula"];
 
       header("Location: ../menu.html");
     }

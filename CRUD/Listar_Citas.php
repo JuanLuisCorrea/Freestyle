@@ -12,7 +12,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 if ($admin != 1) {
-    $sql = "SELECT * from cita WHERE Client='" . $cedula . "'";
+    $sql = "SELECT * from cita WHERE Client='" . $cedula . " AND (SELECT * FROM client  WHERE administrador = '0' )";
     $result = $conn->query($sql);
 } else {
     $sql = "SELECT * from cita";
@@ -54,7 +54,16 @@ if ($result->num_rows > 0) {
             echo "<tr>\n";
         }
 
-        echo "<td>" . $row["ID"] . "</td>\n<td>" . $row["Client"] . "</td>\n<td>" . $row["Services"] . "</td>\n<td>" . $row["Date"] . "</td>\n<td>" . $row["Hour"] . "</td>\n<td>" . $row["Finish_Hour"] . "</td>\n<td>" . $row["Duration"] . " minutos" . "</td>\n<td><a href=\"Delete.php?id=" . $row["ID"] . "\">Borrar </td> <td> <a href=\"Update.php?id=" . $row["ID"] . "\">Editar </td>\n";
+        echo "<td>" . $row["ID"] . "</td>";
+        echo "<td>" . $row["Client"] . "</td>";
+        echo "<td>" . $row["Services"] . "</td>";
+        echo "<td>" . $row["Date"] . "</td>";
+        echo "<td>" . $row["Hour"] . "</td>";
+        echo "<td>" . $row["Finish_Hour"] . "</td>";
+        echo "<td>" . $row["Duration"] . " minutos" . "</td>";
+        echo "<td><a href=\"Delete.php?id=" . $row["ID"] . "\">Borrar </td>";
+        echo  "<td> <a href=\"Update.php?id=" . $row["ID"] . "\">Editar </td>\n";
+        echo  "<td> <a href=\"Update.php?id=" . $row["ID"] . "\">Editar </td>\n";
         echo "</tr>\n";
         $fila = $fila + 1;
     }
