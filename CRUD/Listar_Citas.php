@@ -36,14 +36,14 @@ if ($result->num_rows > 0) {
     echo "<div align=\"center\">\n";
     echo "<table border=2>\n";
     echo "<tr BGCOLOR=\"#D3D3D3\">\n";
-    echo "<td>id</td>\n";
-    echo "<td>Cedula</td>\n";
-    echo "<td>Servicios</td>\n";
-    echo "<td>Fecha</td>\n";
-    echo "<td>Hora</td>\n";
-    echo "<td>Hora de salida</td>\n";
+    echo "<td align=\"center\">id</td>\n";
+    echo "<td align=\"center\">Cedula</td>\n";
+    echo "<td align=\"center\">Servicios</td>\n";
+    echo "<td align=\"center\">Fecha</td>\n";
+    echo "<td align=\"center\">Hora</td>\n";
+    echo "<td align=\"center\">Hora de salida</td>\n";
     echo "<td>Duracion</td>\n";
-    echo "<td colspan=\"2\">Acción</td>\n";
+    echo "<td colspan=\"3\" align=\"center\">Acción</td>\n";
     echo "</tr>";
 
     $fila = 1;
@@ -54,16 +54,16 @@ if ($result->num_rows > 0) {
             echo "<tr>\n";
         }
 
-        echo "<td>" . $row["ID"] . "</td>";
-        echo "<td>" . $row["Client"] . "</td>";
-        echo "<td>" . $row["Services"] . "</td>";
-        echo "<td>" . $row["Date"] . "</td>";
-        echo "<td>" . $row["Hour"] . "</td>";
-        echo "<td>" . $row["Finish_Hour"] . "</td>";
-        echo "<td>" . $row["Duration"] . " minutos" . "</td>";
+        echo "<td align=\"center\">" . $row["ID"] . "</td>";
+        echo "<td align=\"center\">" . $row["Client"] . "</td>";
+        echo "<td align=\"center\">" . $row["Services"] . "</td>";
+        echo "<td align=\"center\">" . $row["Date"] . "</td>";
+        echo "<td align=\"center\">" . $row["Hour"] . "</td>";
+        echo "<td align=\"center\">" . $row["Finish_Hour"] . "</td>";
+        echo "<td align=\"center\">" . $row["Duration"] . " minutos" . "</td>";
         echo "<td><a href=\"Delete.php?id=" . $row["ID"] . "\">Borrar </td>";
         echo  "<td> <a href=\"Update.php?id=" . $row["ID"] . "\">Editar </td>\n";
-        echo  "<td> <a href=\"Update.php?id=" . $row["ID"] . "\">Editar </td>\n";
+        echo  "<td> <a href=\"Factura.php?id=" . $row["ID"] . "\">Factura </td>\n";
         echo "</tr>\n";
         $fila = $fila + 1;
     }
