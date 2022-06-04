@@ -57,19 +57,26 @@ if (isset($_GET['id'])) {
                 <br>
                 <label>
                     Fecha
-                    <input id="Date" name="Date" type="date" value="<?php echo $Date; ?> ">
+                    <input id="Date" name="Date" type="date" value="<?php echo $Date; ?>" required>
                 </label>
                 <br>
                 <label>
                     Hora
-                    <input id="Hour" name="Hour" type="time" value="<?php echo $Hour; ?> ">
+                    <input id="Hour" name="Hour" type="time" min="8:00" max="20:00" value="<?php echo $Hour; ?>" required>
                 </label>
                 <br>
-                <input id="id" name="id" type="hidden" value="<?php echo $_GET['id']; ?> ">
+                <input id="id" name="id" type="hidden" value="<?php echo $_GET['id']; ?>">
                 <input type="submit" value="Editar">
             </fieldset>
         </form>
     </div>
+    <script>
+        // VALIDAR FORMULARIO
+
+        // Validar que no agende una fecha anterior al día actual
+        let minDate = new Date().toISOString().split("T")[0];
+        document.getElementById("Date").setAttribute('min',minDate);
+    </script>
 </body>
 
 </html>

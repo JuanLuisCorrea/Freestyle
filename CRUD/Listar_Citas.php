@@ -1,7 +1,6 @@
 <?php
 session_start();
 $cedula = $_SESSION["Cedula"];
-$admin = $_SESSION["admin"];
 
 // Base de datos
 include '../Sql/db.php';
@@ -11,8 +10,14 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-if ($admin != 1) {
-    $sql = "SELECT * from cita WHERE Client='" . $cedula;
+
+// Verificar si es admin o usuario
+$sql = "SELECT administrador FROM client WHERE Cedula='" . $cedula . "'";
+$result = $conn->query($sql);
+$row = $result->fetch_assoc();
+
+if ($row["administrador"] != 1) {
+    $sql = "SELECT * from cita WHERE Client='" . $cedula . "'";
     $result = $conn->query($sql);
 } else {
     $sql = "SELECT * from cita";
@@ -26,12 +31,13 @@ if ($admin != 1) {
 
 echo "<html>\n";
 echo "\t<head>\n";
-echo "\t\t<title>Mis citas</title>\n";
+echo "\t\t<title>Citas agendadas</title>\n";
 echo "\t\t<meta http-equiv= \"refresh\" content=\"5\" />\n";
 echo "\t\t<meta charset=\"UTF-8\"/>\n";
 echo "\t</head>\n";
 echo "\t<body>\n";
 
+error_reporting(0);
 if ($result->num_rows > 0) {
     echo "<div align=\"center\">\n";
     echo "<table border=2>\n";
@@ -62,13 +68,7 @@ if ($result->num_rows > 0) {
         echo "<td align=\"center\">" . $row["Finish_Hour"] . "</td>";
         echo "<td align=\"center\">" . $row["Duration"] . " minutos" . "</td>";
         echo "<td><a href=\"Delete.php?id=" . $row["ID"] . "\">Borrar </td>";
-
-        if ($admin != 1) {
-            echo  "<td> <a href=\"UpdateAdmin.php?id=" . $row["ID"] . "\">Editar </td>\n";
-        } else {
-            echo  "<td> <a href=\"Update.php?id=" . $row["ID"] . "\">Editar </td>\n";
-        }
-
+        echo  "<td> <a href=\"Update.php?id=" . $row["ID"] . "\">Editar </td>\n";
         echo  "<td> <a href=\"Factura.php?id=" . $row["ID"] . "\">Factura </td>\n";
         echo "</tr>\n";
         $fila = $fila + 1;

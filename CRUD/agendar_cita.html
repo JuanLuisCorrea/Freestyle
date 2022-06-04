@@ -32,17 +32,25 @@
             <br />
             <label>
                 Fecha
-                <input name="date" name="date" type="date" min="2022-06-03" max="2022-06-30" />
+                <input id="date" name="date" type="date" required />
             </label>
             <br />
             <label>
                 Hora
-                <input name="hour" name="hour" type="time" min="8:00" max="20:00" />
+                <input id="hour" name="hour" type="time" min="8:00" max="20:00" required/>
             </label>
             <br />
             <input type="submit" value="Agendar cita" />
         </fieldset>
     </form>
+
+    <script>
+        // VALIDAR FORMULARIO
+
+        // Validar que no agende una fecha anterior al día actual
+        let minDate = new Date().toISOString().split("T")[0];
+        document.getElementById("date").setAttribute('min',minDate);
+    </script>
 </body>
 
 </html>

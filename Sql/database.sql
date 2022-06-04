@@ -26,33 +26,37 @@ CREATE TABLE IF NOT EXISTS `cita` (
   `Hour` time DEFAULT NULL,
   `Finish_Hour` time DEFAULT NULL,
   `Duration` int(11) NOT NULL,
+  `Price` int(11) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8mb4;
 
 -- Volcando datos para la tabla freestyle.cita: ~0 rows (aproximadamente)
 DELETE FROM `cita`;
 /*!40000 ALTER TABLE `cita` DISABLE KEYS */;
+INSERT INTO `cita` (`ID`, `Client`, `Services`, `Date`, `Hour`, `Finish_Hour`, `Duration`, `Price`) VALUES
+	(51, '123456789', 'Corte de cabello,Corte barba', '2022-06-04', '16:45:00', '18:05:00', 80, 19000);
 /*!40000 ALTER TABLE `cita` ENABLE KEYS */;
 
 -- Volcando estructura para tabla freestyle.client
 CREATE TABLE IF NOT EXISTS `client` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Name` varchar(80) NOT NULL,
-  `Telephone` int(11) DEFAULT NULL,
+  `Telephone` varchar(10) DEFAULT NULL,
   `Email` varchar(50) NOT NULL,
   `Date` date DEFAULT NULL,
   `Cedula` varchar(11) DEFAULT NULL,
   `Contraseña` varchar(50) NOT NULL,
   `administrador` int(1) unsigned zerofill DEFAULT 0,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla freestyle.client: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla freestyle.client: ~3 rows (aproximadamente)
 DELETE FROM `client`;
 /*!40000 ALTER TABLE `client` DISABLE KEYS */;
 INSERT INTO `client` (`ID`, `Name`, `Telephone`, `Email`, `Date`, `Cedula`, `Contraseña`, `administrador`) VALUES
-	(11, 'Juan Correa', 2147483647, 'jucs0709@gmail.com', '2003-09-07', '1193364423', 'asdasd', 1),
-	(12, 'Luis', 123123123, 'luis@email.com', '2022-05-27', '111222333', 'qwerty', 0);
+	(15, 'Juan Correa', '3017063712', 'jucs0709@gmail.com', '2003-09-07', '1193364423', 'asdasd', 1),
+	(16, 'Luis Correa', '3012223333', 'luis@gmail.com', '2004-06-08', '123456789', 'dsadsa', 0),
+	(17, 'Luis Solórzano', '3014445555', 'luisslorzano@gmail.com', '2003-01-01', '987654321', 'qwerty', 0);
 /*!40000 ALTER TABLE `client` ENABLE KEYS */;
 
 -- Volcando estructura para tabla freestyle.factura

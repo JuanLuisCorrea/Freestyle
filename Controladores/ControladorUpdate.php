@@ -6,7 +6,7 @@ $services = "";
 $finish_hour = 0;
 $duracion = 0;
 $duracion_total = 0;
-$precio_total = 0;
+$precio = 0;
 
 //Base de datos
 include '../Sql/db.php';
@@ -23,37 +23,41 @@ if ($conn->connect_error) {
 $sql = "SELECT * FROM cita WHERE Date='" . $Date . "' AND HOUR<='" . $Hour . "' AND Finish_Hour>'" . $Hour . "'";
 $result = $conn->query($sql);
 $fila = $result->fetch_assoc();
-if ($fila == true) {
+if ($fila["ID"] !== $id) {
   include("../CRUD/Update.php");
   echo "Hora no disponible";
 } else { //Agendar cita si está disponible
-  //Calcular duración de la cita
+  //Calcular duración y precio de la cita según los servicios
   if (isset($_REQUEST["corte_de_pelo"])) {
-    $sql = "SELECT Duration_Service FROM servicio WHERE Type_Service ='Corte de cabello'";
+    $sql = "SELECT Duration_Service,Price FROM servicio WHERE Type_Service ='Corte de cabello'";
     $result = $conn->query($sql);
-    $duracion = $result->fetch_assoc();
-    $duracion_total = $duracion_total + intval($duracion["Duration_Service"]);
+    $row = $result->fetch_assoc();
+    $duracion_total = $duracion_total + intval($row["Duration_Service"]);
+    $precio = $precio + intval($row["Price"]);
     $services = $services . "Corte de cabello,";
   }
   if (isset($_REQUEST["corte_de_barba"])) {
-    $sql = "SELECT Duration_Service FROM servicio WHERE Type_Service ='Corte barba'";
+    $sql = "SELECT Duration_Service,Price FROM servicio WHERE Type_Service ='Corte barba'";
     $result = $conn->query($sql);
-    $duracion = $result->fetch_assoc();
-    $duracion_total = $duracion_total + intval($duracion["Duration_Service"]);
+    $row = $result->fetch_assoc();
+    $duracion_total = $duracion_total + intval($row["Duration_Service"]);
+    $precio = $precio + intval($row["Price"]);
     $services = $services . "Corte barba,";
   }
   if (isset($_REQUEST["mascarilla_facial"])) {
-    $sql = "SELECT Duration_Service FROM servicio WHERE Type_Service ='Mascarilla facial'";
+    $sql = "SELECT Duration_Service,Price FROM servicio WHERE Type_Service ='Mascarilla facial'";
     $result = $conn->query($sql);
-    $duracion = $result->fetch_assoc();
-    $duracion_total = $duracion_total + intval($duracion["Duration_Service"]);
+    $row = $result->fetch_assoc();
+    $duracion_total = $duracion_total + intval($row["Duration_Service"]);
+    $precio = $precio + intval($row["Price"]);
     $services = $services . "Mascarilla facial,";
   }
   if (isset($_REQUEST["cejas"])) {
-    $sql = "SELECT Duration_Service FROM servicio WHERE Type_Service ='Cejas'";
+    $sql = "SELECT Duration_Service,Price FROM servicio WHERE Type_Service ='Cejas'";
     $result = $conn->query($sql);
-    $duracion = $result->fetch_assoc();
-    $duracion_total = $duracion_total + intval($duracion["Duration_Service"]);
+    $row = $result->fetch_assoc();
+    $duracion_total = $duracion_total + intval($row["Duration_Service"]);
+    $precio = $precio + intval($row["Price"]);
     $services = $services . "Cejas,";
   }
   $services = substr($services, 0, -1);
@@ -63,7 +67,7 @@ if ($fila == true) {
   $finish_hour = date('H:i:s', $finish_hour);
 
   $sql = "UPDATE cita 
-          set Services = '" . $services . "', Hour = '" . $Hour . "', Finish_Hour = '" . $finish_hour . "', Duration = '" . $duracion_total . "', Date = '" . $Date . "' 
+          SET Services = '" . $services . "', Hour = '" . $Hour . "', Finish_Hour = '" . $finish_hour . "', Duration = '" . $duracion_total . "', Date = '" . $Date . "', Price = '" . $precio . "' 
           WHERE ID ='" . $id . "'";
 
   if ($conn->query($sql) === TRUE) {
