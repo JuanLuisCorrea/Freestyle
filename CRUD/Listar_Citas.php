@@ -12,7 +12,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 if ($admin != 1) {
-    $sql = "SELECT * from cita WHERE Client='" . $cedula . " AND (SELECT * FROM client  WHERE administrador = '0' )";
+    $sql = "SELECT * from cita WHERE Client='" . $cedula;
     $result = $conn->query($sql);
 } else {
     $sql = "SELECT * from cita";

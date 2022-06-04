@@ -81,7 +81,8 @@ ob_start();
 <?php
 $html = ob_get_clean();
 echo $html;
-require_once "..\Libreria\dompdf\autoload.inc.php";
+
+require_once '..\CRUD\Libreria\dompdf\autoload.inc.php';
 
 use Dompdf\Dompdf;
 
@@ -95,7 +96,7 @@ $dompdf->loadHtml($html);
 $dompdf->setPaper('letter');
 
 $dompdf->render();
-$dompdf->stream("Factura_Cita_FreeStyle.pdf", array("Attachment" => false));
+$dompdf->stream("Factura_Cita_FreeStyle.pdf", array("Attachment" => true));
 
 
 ?>
