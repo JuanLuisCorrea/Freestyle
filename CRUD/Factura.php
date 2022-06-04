@@ -15,6 +15,7 @@ $result = $conn->query($sql);
         <td>Hora de salida</td>
         <td>Duracion</td>
         <td colspan=2>Acción</td>
+
     </tr>
     <?php
     $fila = 1;
