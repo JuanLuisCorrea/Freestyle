@@ -96,7 +96,7 @@ $dompdf->loadHtml($html);
 $dompdf->setPaper('letter');
 
 $dompdf->render();
-$dompdf->stream("Factura_Cita_FreeStyle.pdf", array("Attachment" => true));
+$dompdf->stream("Factura_Cita_FreeStyle.pdf", array("Attachment" => false));
 
 
 ?>
