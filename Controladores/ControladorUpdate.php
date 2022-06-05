@@ -23,12 +23,29 @@ if ($conn->connect_error) {
 $sql = "SELECT * FROM cita WHERE Date='" . $Date . "' AND HOUR<='" . $Hour . "' AND Finish_Hour>'" . $Hour . "'";
 $result = $conn->query($sql);
 $fila = $result->fetch_assoc();
-if ($fila["ID"] !== $id) {
+if ($fila == true) {
   include("../CRUD/Update.php");
   echo "Hora no disponible";
 } else { //Agendar cita si está disponible
   //Calcular duración y precio de la cita según los servicios
-  if (isset($_REQUEST["corte_de_pelo"])) {
+
+  //Intento prueba while generico para servicios
+  $aux = 0;
+  while ($aux < 4) {
+    if (isset($_REQUEST[$fila["Type_Service"]])) {
+      $sql = "SELECT Duration_Service,Price,Type_Service FROM servicio WHERE Type_Service ='" . $fila["Type_Service"] . "'";
+      $result = $conn->query($sql);
+      $row = $result->fetch_assoc();
+      $duracion_total = $duracion_total + intval($row["Duration_Service"]);
+      $precio = $precio + intval($row["Price"]);
+      $services = $services . $row["Type_Service"];
+    }
+    $aux = $aux + 1;
+  }
+
+
+
+  /*if (isset($_REQUEST["corte_de_pelo"])) {
     $sql = "SELECT Duration_Service,Price FROM servicio WHERE Type_Service ='Corte de cabello'";
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
@@ -59,7 +76,7 @@ if ($fila["ID"] !== $id) {
     $duracion_total = $duracion_total + intval($row["Duration_Service"]);
     $precio = $precio + intval($row["Price"]);
     $services = $services . "Cejas,";
-  }
+  }*/
   $services = substr($services, 0, -1);
 
   //Calcular hora de salida según la duración de la cita

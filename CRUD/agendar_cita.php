@@ -1,3 +1,6 @@
+<?php
+
+?>
 <html>
 
 <head>
@@ -13,6 +16,7 @@
             Servicios
             <br />
             <label>
+
                 <input name="corte_de_pelo" id="corte_de_pelo" type="checkbox" />
                 Corte de pelo
             </label>
@@ -37,7 +41,7 @@
             <br />
             <label>
                 Hora
-                <input id="hour" name="hour" type="time" min="8:00" max="20:00" required/>
+                <input id="hour" name="hour" type="time" min="8:00" max="20:00" required />
             </label>
             <br />
             <input type="submit" value="Agendar cita" />
@@ -49,7 +53,7 @@
 
         // Validar que no agende una fecha anterior al día actual
         let minDate = new Date().toISOString().split("T")[0];
-        document.getElementById("date").setAttribute('min',minDate);
+        document.getElementById("date").setAttribute('min', minDate);
     </script>
 </body>
 
