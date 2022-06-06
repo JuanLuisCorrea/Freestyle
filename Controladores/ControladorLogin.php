@@ -9,7 +9,7 @@
   //Conectar a la base de datos
   include '../Sql/db.php';
   $conn = new mysqli($servername, $username, $password, $dbname);
-  
+
   //Autenticar usuario
   $sql = "SELECT * FROM client WHERE Email='" . $email . "' AND Contraseña='" . $pass . "'";
   $result = $conn->query($sql);
@@ -22,12 +22,16 @@
     session_start();
 
     //Obtener la cédula del cliente
-    $sql = "SELECT Cedula FROM client WHERE Email='" . $email . "' AND Contraseña='" . $pass . "'";
+    $sql = "SELECT Cedula,administrador FROM client WHERE Email='" . $email . "' AND Contraseña='" . $pass . "'";
     $result = $conn->query($sql);
     $cedula = $result->fetch_assoc();
     $_SESSION["Cedula"] = $cedula["Cedula"];
 
-    header("Location: ../menu.html");
+    if ($cedula["administrador"] == 1) {
+      header("Location: ../CRUD_Admin/MenuAdmin.html");
+    } else {
+      header("Location: ../menu.html");
+    }
   }
   $conn->close();
   ?>
