@@ -27,58 +27,27 @@ if ($fila == true) {
   include("../CRUD/Update.php");
   echo "Hora no disponible";
 } else { //Agendar cita si está disponible
+  
   //Calcular duración y precio de la cita según los servicios
-
   //Intento prueba while generico para servicios
-  $aux = 0;
-  while ($aux < 4) {
-    if (isset($_REQUEST[$fila["Type_Service"]])) {
-      $sql = "SELECT Duration_Service,Price,Type_Service FROM servicio WHERE Type_Service ='" . $fila["Type_Service"] . "'";
-      $result = $conn->query($sql);
-      $row = $result->fetch_assoc();
+  $sql = "SELECT Type_Service FROM servicio;";
+  $result = $conn->query($sql);
+
+  while($fila = $result->fetch_assoc()) {
+    $tipo_servicio = $fila["Type_Service"];
+    if(isset($_REQUEST[$tipo_servicio])) {
+      $sql = "SELECT Duration_Service,Price FROM servicio WHERE Type_Service = '".$tipo_servicio."'";
+      $resultado = $conn->query($sql);
+      $row = $resultado->fetch_assoc();
       $duracion_total = $duracion_total + intval($row["Duration_Service"]);
       $precio = $precio + intval($row["Price"]);
-      $services = $services . $row["Type_Service"];
+      $services = $services . $tipo_servicio . ",";
+    } else {
+      continue;
     }
-    $aux = $aux + 1;
   }
-
-
-
-  /*if (isset($_REQUEST["corte_de_pelo"])) {
-    $sql = "SELECT Duration_Service,Price FROM servicio WHERE Type_Service ='Corte de cabello'";
-    $result = $conn->query($sql);
-    $row = $result->fetch_assoc();
-    $duracion_total = $duracion_total + intval($row["Duration_Service"]);
-    $precio = $precio + intval($row["Price"]);
-    $services = $services . "Corte de cabello,";
-  }
-  if (isset($_REQUEST["corte_de_barba"])) {
-    $sql = "SELECT Duration_Service,Price FROM servicio WHERE Type_Service ='Corte barba'";
-    $result = $conn->query($sql);
-    $row = $result->fetch_assoc();
-    $duracion_total = $duracion_total + intval($row["Duration_Service"]);
-    $precio = $precio + intval($row["Price"]);
-    $services = $services . "Corte barba,";
-  }
-  if (isset($_REQUEST["mascarilla_facial"])) {
-    $sql = "SELECT Duration_Service,Price FROM servicio WHERE Type_Service ='Mascarilla facial'";
-    $result = $conn->query($sql);
-    $row = $result->fetch_assoc();
-    $duracion_total = $duracion_total + intval($row["Duration_Service"]);
-    $precio = $precio + intval($row["Price"]);
-    $services = $services . "Mascarilla facial,";
-  }
-  if (isset($_REQUEST["cejas"])) {
-    $sql = "SELECT Duration_Service,Price FROM servicio WHERE Type_Service ='Cejas'";
-    $result = $conn->query($sql);
-    $row = $result->fetch_assoc();
-    $duracion_total = $duracion_total + intval($row["Duration_Service"]);
-    $precio = $precio + intval($row["Price"]);
-    $services = $services . "Cejas,";
-  }*/
   $services = substr($services, 0, -1);
-
+  
   //Calcular hora de salida según la duración de la cita
   $finish_hour = strtotime("+" . $duracion_total . " minute", strtotime($Hour));
   $finish_hour = date('H:i:s', $finish_hour);
@@ -96,6 +65,7 @@ if ($fila == true) {
     echo "Error al actualizar el registro";
     echo "Error " . $conn->error;
   }
+
 }
 
 

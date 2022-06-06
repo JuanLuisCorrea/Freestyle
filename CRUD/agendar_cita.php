@@ -14,26 +14,25 @@
         <fieldset>
             <legend>Agendar cita</legend>
             Servicios
-            <br />
+            <br>
             <label>
-
-                <input name="corte_de_pelo" id="corte_de_pelo" type="checkbox" />
-                Corte de pelo
+                <input name="corte_de_cabello" id="corte_de_cabello" type="checkbox">
+                Corte de cabello
             </label>
             <label>
-                <input name="corte_de_barba" name="corte_de_barba" type="checkbox" />
+                <input name="corte_de_barba" id="corte_de_barba" type="checkbox">
                 Corte de barba
             </label>
-            <br />
+            <br>
             <label>
-                <input name="mascarilla_facial" name="mascarilla_facial" type="checkbox" />
+                <input name="mascarilla_facial" id="mascarilla_facial" type="checkbox">
                 Mascarilla facial
             </label>
             <label>
-                <input name="cejas" name="cejas" type="checkbox" />
+                <input name="cejas" id="cejas" type="checkbox">
                 Cejas
             </label>
-            <br />
+            <br>
             <label>
                 Fecha
                 <input id="date" name="date" type="date" required />

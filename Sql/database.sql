@@ -28,13 +28,14 @@ CREATE TABLE IF NOT EXISTS `cita` (
   `Duration` int(11) NOT NULL,
   `Price` int(11) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb4;
 
 -- Volcando datos para la tabla freestyle.cita: ~0 rows (aproximadamente)
 DELETE FROM `cita`;
 /*!40000 ALTER TABLE `cita` DISABLE KEYS */;
 INSERT INTO `cita` (`ID`, `Client`, `Services`, `Date`, `Hour`, `Finish_Hour`, `Duration`, `Price`) VALUES
-	(51, '123456789', 'Corte de cabello,Corte barba', '2022-06-04', '16:45:00', '18:05:00', 80, 19000);
+	(52, '123456789', 'mascarilla_facial,cejas', '2022-06-06', '17:00:00', '17:30:00', 30, 13000),
+	(54, '123456789', 'corte_de_cabello,corte_de_barba', '2022-06-06', '19:20:00', '20:40:00', 80, 19000);
 /*!40000 ALTER TABLE `cita` ENABLE KEYS */;
 
 -- Volcando estructura para tabla freestyle.client
@@ -50,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `client` (
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla freestyle.client: ~3 rows (aproximadamente)
+-- Volcando datos para la tabla freestyle.client: ~2 rows (aproximadamente)
 DELETE FROM `client`;
 /*!40000 ALTER TABLE `client` DISABLE KEYS */;
 INSERT INTO `client` (`ID`, `Name`, `Telephone`, `Email`, `Date`, `Cedula`, `Contraseña`, `administrador`) VALUES
@@ -88,10 +89,10 @@ CREATE TABLE IF NOT EXISTS `servicio` (
 DELETE FROM `servicio`;
 /*!40000 ALTER TABLE `servicio` DISABLE KEYS */;
 INSERT INTO `servicio` (`ID`, `Price`, `Type_Service`, `Duration_Service`, `Employee`) VALUES
-	(1, 12000, 'Corte de cabello', 60, 'Juancho'),
-	(2, 7000, 'Corte barba', 20, 'Juan Diego'),
-	(3, 8000, 'Mascarilla facial', 20, 'Luis'),
-	(4, 5000, 'Cejas', 10, 'JC');
+	(1, 12000, 'corte_de_cabello', 60, 'Juancho'),
+	(2, 7000, 'corte_de_barba', 20, 'Juan Diego'),
+	(3, 8000, 'mascarilla_facial', 20, 'Luis'),
+	(4, 5000, 'cejas', 10, 'JC');
 /*!40000 ALTER TABLE `servicio` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
