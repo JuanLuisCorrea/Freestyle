@@ -37,7 +37,7 @@ if ($conn->query($sql) === TRUE) {
     include("../CRUD_Admin/UpdateServicio.php");
     echo "Servicio actualizado!";
     echo "<br>";
-    echo "<a href=\"../CRUD_Admin/MenuAdmin.html\">Menú</a>";
+    echo "<a href=\"../CRUD_Admin/MenuAdmin.php\">Menú</a>";
 } else {
     echo "Error al actualizar el Servicio";
     echo "Error " . $conn->error;

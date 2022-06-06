@@ -40,7 +40,7 @@
             include("../CRUD_Admin/RegistroServicios.php");
             echo "Registro exitoso!";
             echo "<br>";
-            echo "<a href=\"../CRUD_Admin/MenuAdmin.html\">Menú</a>";
+            echo "<a href=\"../CRUD_Admin/MenuAdmin.php\">Menú</a>";
         } else {
             echo "Error " . $conn->error;
         }

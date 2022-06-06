@@ -27,16 +27,16 @@ if ($fila == true) {
   include("../CRUD/Update.php");
   echo "Hora no disponible";
 } else { //Agendar cita si está disponible
-  
+
   //Calcular duración y precio de la cita según los servicios
   //Intento prueba while generico para servicios
   $sql = "SELECT Type_Service FROM servicio;";
   $result = $conn->query($sql);
 
-  while($fila = $result->fetch_assoc()) {
+  while ($fila = $result->fetch_assoc()) {
     $tipo_servicio = $fila["Type_Service"];
-    if(isset($_REQUEST[$tipo_servicio])) {
-      $sql = "SELECT Duration_Service,Price FROM servicio WHERE Type_Service = '".$tipo_servicio."'";
+    if (isset($_REQUEST[$tipo_servicio])) {
+      $sql = "SELECT Duration_Service,Price FROM servicio WHERE Type_Service = '" . $tipo_servicio . "'";
       $resultado = $conn->query($sql);
       $row = $resultado->fetch_assoc();
       $duracion_total = $duracion_total + intval($row["Duration_Service"]);
@@ -47,7 +47,7 @@ if ($fila == true) {
     }
   }
   $services = substr($services, 0, -1);
-  
+
   //Calcular hora de salida según la duración de la cita
   $finish_hour = strtotime("+" . $duracion_total . " minute", strtotime($Hour));
   $finish_hour = date('H:i:s', $finish_hour);
@@ -60,12 +60,11 @@ if ($fila == true) {
     include("../CRUD/Update.php");
     echo "Cita actualizada!";
     echo "<br>";
-    echo "<a href=\"../menu.html\">Menú</a>";
+    echo "<a href=\"../menu.php\">Menú</a>";
   } else {
     echo "Error al actualizar el registro";
     echo "Error " . $conn->error;
   }
-
 }
 
 

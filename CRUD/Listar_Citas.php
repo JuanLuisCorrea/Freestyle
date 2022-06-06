@@ -78,10 +78,10 @@ if ($result->num_rows > 0) {
     echo "</table>\n";
     echo "<br>";
     if ($adminMenu == 1) {
-        echo "<a href=\"../CRUD_Admin/MenuAdmin.html\">Menú</a>";
+        echo "<a href=\"../CRUD_Admin/MenuAdmin.php\">Menú</a>";
         echo "</div>\n";
     } else {
-        echo "<a href=\"../menu.html\">Menú</a>";
+        echo "<a href=\"../menu.php\">Menú</a>";
         echo "</div>\n";
     }
 } else {
@@ -89,12 +89,12 @@ if ($result->num_rows > 0) {
     if ($adminMenu == 1) {
         echo "Aún no tienes citas agendadas!";
         echo "<br>";
-        echo "<a href=\"../CRUD_Admin/MenuAdmin.html\">Menú</a>";
+        echo "<a href=\"../CRUD_Admin/MenuAdmin.php\">Menú</a>";
         echo "</div>\n";
     } else {
         echo "Aún no tienes citas agendadas!";
         echo "<br>";
-        echo "<a href=\"../menu.html\">Menú</a>";
+        echo "<a href=\"../menu.php\">Menú</a>";
         echo "</div>\n";
     }
 }

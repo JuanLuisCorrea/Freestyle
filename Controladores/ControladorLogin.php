@@ -28,9 +28,9 @@
     $_SESSION["Cedula"] = $cedula["Cedula"];
 
     if ($cedula["administrador"] == 1) {
-      header("Location: ../CRUD_Admin/MenuAdmin.html");
+      header("Location: ../CRUD_Admin/MenuAdmin.php");
     } else {
-      header("Location: ../menu.html");
+      header("Location: ../menu.php");
     }
   }
   $conn->close();

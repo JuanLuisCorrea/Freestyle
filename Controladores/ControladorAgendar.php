@@ -32,10 +32,10 @@
     $sql = "SELECT Type_Service FROM servicio;";
     $result = $conn->query($sql);
 
-    while($fila = $result->fetch_assoc()) {
+    while ($fila = $result->fetch_assoc()) {
       $tipo_servicio = $fila["Type_Service"];
-      if(isset($_REQUEST[$tipo_servicio])) {
-        $sql = "SELECT Duration_Service,Price FROM servicio WHERE Type_Service = '".$tipo_servicio."'";
+      if (isset($_REQUEST[$tipo_servicio])) {
+        $sql = "SELECT Duration_Service,Price FROM servicio WHERE Type_Service = '" . $tipo_servicio . "'";
         $resultado = $conn->query($sql);
         $row = $resultado->fetch_assoc();
         $duracion_total = $duracion_total + intval($row["Duration_Service"]);
@@ -53,14 +53,14 @@
 
     //Insertar cita en la base de datos
     $sql = "INSERT INTO cita(Client,Services,Date,Hour,Finish_Hour,Duration,Price) 
-            values('" . $cc . "','" . $services . "','" . $date . "','" . $hour . "','" . $finish_hour . "','" . $duracion_total . "','" . $precio ."')";
+            values('" . $cc . "','" . $services . "','" . $date . "','" . $hour . "','" . $finish_hour . "','" . $duracion_total . "','" . $precio . "')";
 
     if ($conn->query($sql) === TRUE) {
       include("../CRUD/agendar_cita.php");
       echo "<br>";
       echo "Cita agendada!";
       echo "<br>";
-      echo "<a href=\"../menu.html\">Menú</a>";
+      echo "<a href=\"../menu.php\">Menú</a>";
     } else {
       echo "Error " . $conn->error;
     }
@@ -70,4 +70,5 @@
   ?>
 
 </body>
+
 </html>
