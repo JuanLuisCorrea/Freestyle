@@ -42,14 +42,10 @@
       if ($a == true) {
         $adminMenu = 1;
       }
-      if ($admin != 1) {
-        $sql = "SELECT * from servicio";
-        $result = $conn->query($sql);
-      } else {
-        $sql = "SELECT * from servicio";
-        $result = $conn->query($sql);
-        $adminMenu = 1;
-      }
+
+      $sql = "SELECT * from servicio";
+      $result = $conn->query($sql);
+
       /* * *******************************
 
   CREAR TABLA DINAMICA
@@ -87,7 +83,7 @@
           }
 
           echo "<td align=\"center\">" . $row["Type_Service"] . "</td>";
-          echo "<td align=\"center\">" . $row["Price"] . "</td>";
+          echo "<td align=\"center\">$" . $row["Price"] . "</td>";
           echo "<td align=\"center\">" . $row["Duration_Service"] . "</td>";
           echo "<td align=\"center\">" . $row["Employee"] . "</td>";
 

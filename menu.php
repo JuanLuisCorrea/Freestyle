@@ -41,14 +41,9 @@
         $adminMenu = 0;
       }
 
-      if ($adminMenu != 1) {
-        $sql = "SELECT * from servicio";
-        $result = $conn->query($sql);
-      } else {
-        $sql = "SELECT * from servicio";
-        $result = $conn->query($sql);
-        $adminMenu = 1;
-      }
+      $sql = "SELECT * from servicio";
+      $result = $conn->query($sql);
+
 
       /* * *******************************
 
@@ -73,7 +68,7 @@
         echo "<td align=\"center\">Duración</td>\n";
         echo "<td align=\"center\">Empleado</td>\n";
 
-        if ($adminMenu == 1) {
+        if ($adminMenu != 1) {
           echo "<td colspan=\"2\" align=\"center\">Acciones</td>\n";
         }
 
@@ -88,11 +83,11 @@
           }
 
           echo "<td align=\"center\">" . $row["Type_Service"] . "</td>";
-          echo "<td align=\"center\">" . $row["Price"] . "</td>";
+          echo "<td align=\"center\">$" . $row["Price"] . "</td>";
           echo "<td align=\"center\">" . $row["Duration_Service"] . "</td>";
           echo "<td align=\"center\">" . $row["Employee"] . "</td>";
 
-          if ($adminMenu == 1) {
+          if ($adminMenu != 1) {
             echo "<td><a href=\"DeleteServicio.php?id=" . $row["ID"] . "\">Borrar </td>";
             echo  "<td> <a href=\"UpdateServicio.php?id=" . $row["ID"] . "\">Editar </td>\n";
           }
