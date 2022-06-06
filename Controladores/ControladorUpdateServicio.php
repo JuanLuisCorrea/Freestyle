@@ -16,41 +16,30 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-//Calcular duración y precio de la cita según los servicios
-//Intento prueba while generico para servicios
-$sql = "SELECT Type_Service FROM servicio;";
-$result = $conn->query($sql);
-
-while ($fila = $result->fetch_assoc()) {
-    $tipo_servicio = $fila["Type_Service"];
-    if (isset($_REQUEST[$tipo_servicio])) {
-        $sql = "SELECT Duration_Service,Price FROM servicio WHERE Type_Service = '" . $tipo_servicio . "'";
-        $resultado = $conn->query($sql);
-        $row = $resultado->fetch_assoc();
-        $duracion_total = $duracion_total + intval($row["Duration_Service"]);
-        $precio = $precio + intval($row["Price"]);
-        $services = $services . $tipo_servicio . ",";
+//Convertir input Type_Service en un formato adecuado para la base de datos
+//Poner "_" en espacios vacios
+$Palabra_adaptada = str_split($Type_Service);
+$Servicio = "";
+for ($i = 0; $i < count($Palabra_adaptada); $i++) {
+    if ($Palabra_adaptada[$i] == " ") {
+        $Servicio = $Servicio . "_";
     } else {
-        continue;
+        $Servicio = $Servicio . $Palabra_adaptada[$i];
     }
 }
-$services = substr($services, 0, -1);
+$Type_Service = $Servicio;
 
-//Calcular hora de salida según la duración de la cita
-$finish_hour = strtotime("+" . $duracion_total . " minute", strtotime($Hour));
-$finish_hour = date('H:i:s', $finish_hour);
-
-$sql = "UPDATE cita 
-          SET Services = '" . $services . "', Hour = '" . $Hour . "', Finish_Hour = '" . $finish_hour . "', Duration = '" . $duracion_total . "', Date = '" . $Date . "', Price = '" . $precio . "' 
+$sql = "UPDATE servicio
+          SET Type_Service = '" . $Type_Service . "', Price = '" . $Price . "', Duration_Service = '" . $Duration_Service . "', Employee = '" . $Employee . "'
           WHERE ID ='" . $id . "'";
 
 if ($conn->query($sql) === TRUE) {
-    include("../CRUD/Update.php");
-    echo "Cita actualizada!";
+    include("../CRUD_Admin/UpdateServicio.php");
+    echo "Servicio actualizado!";
     echo "<br>";
-    echo "<a href=\"../menu.html\">Menú</a>";
+    echo "<a href=\"../CRUD_Admin/MenuAdmin.html\">Menú</a>";
 } else {
-    echo "Error al actualizar el registro";
+    echo "Error al actualizar el Servicio";
     echo "Error " . $conn->error;
 }
 
