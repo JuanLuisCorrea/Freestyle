@@ -19,23 +19,13 @@ if ($a == true) {
 }
 $sql = "SELECT * from servicio";
 $result = $conn->query($sql);
-/* * *******************************
 
-  CREAR TABLA DINAMICA
-
- * ******************************* */
-
-echo "<html>\n";
-echo "\t<head>\n";
-echo "\t\t<title>Mis citas</title>\n";
-echo "\t\t<meta http-equiv= \"refresh\" content=\"5\" />\n";
-echo "\t\t<meta charset=\"UTF-8\"/>\n";
-echo "\t</head>\n";
-echo "\t<body>\n";
+/*******************
+CREAR TABLA DINAMICA
+********************/
 
 if ($result->num_rows > 0) {
-    echo "<div align=\"center\">\n";
-    echo "<table border=2>\n";
+    echo "<table class=\"menu-servicestable-admin\">\n";
     echo "<tr BGCOLOR=\"#D3D3D3\">\n";
     echo "<td align=\"center\">Servicio</td>\n";
     echo "<td align=\"center\">Valor</td>\n";
@@ -47,17 +37,26 @@ if ($result->num_rows > 0) {
 
     echo "</tr>";
 
-    $fila = 1;
+    $salto = 0;
     while ($row = $result->fetch_assoc()) {
-        if ($fila % 2 == 0) {
-            echo "<tr BGCOLOR=\"#D3D3D3\">\n";
-        } else {
-            echo "<tr>\n";
-        }
 
-        echo "<td align=\"center\">" . $row["Type_Service"] . "</td>";
-        echo "<td align=\"center\">" . $row["Price"] . "</td>";
-        echo "<td align=\"center\">" . $row["Duration_Service"] . "</td>";
+        $salto = $salto + 1;
+        $Palabra_adaptada = str_split($row["Type_Service"]);
+        $Servicio = "";
+
+        for ($i = 0; $i < count($Palabra_adaptada); $i++) {
+          if ($Palabra_adaptada[$i] == "_") {
+            $Servicio = $Servicio . " ";
+          } else {
+            $Servicio = $Servicio . $Palabra_adaptada[$i];
+          }
+        }
+        $Type_Service = $Servicio;
+
+        echo "<tr>";
+        echo "<td align=\"center\">" . $Type_Service . "</td>";
+        echo "<td align=\"center\">$" . $row["Price"] . "</td>";
+        echo "<td align=\"center\">" . $row["Duration_Service"] . " Minutos</td>";
         echo "<td align=\"center\">" . $row["Employee"] . "</td>";
 
         if ($adminMenu == 1) {
@@ -65,15 +64,11 @@ if ($result->num_rows > 0) {
             echo  "<td> <a href=\"UpdateServicio.php?id=" . $row["ID"] . "\">Editar </td>\n";
         }
         echo "</tr>\n";
-        $fila = $fila + 1;
     }
+
+    echo "</table>";
 } else {
-
-    echo "Aún no tienes citas agendadas!";
-    echo "</div>\n";
+    echo "Aún no hay servicios agregados!";
 }
-
-echo "</body>\n";
-echo "</html>\n";
 
 $conn->close();

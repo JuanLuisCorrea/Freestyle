@@ -26,24 +26,25 @@ $result = $conn->query($sql);
             Servicios
             <br>
             <?php
-            $Palabra_adaptada = str_split($Type_Service);
-            $Servicio = "";
-            for ($i = 0; $i < count($Palabra_adaptada); $i++) {
-                if ($Palabra_adaptada[$i] == " ") {
-                    $Servicio = $Servicio . "_";
-                } else {
-                    $Servicio = $Servicio . $Palabra_adaptada[$i];
-                }
-            }
-            $Type_Service = $Servicio;
-
-
             $salto = 0;
             while ($fila = $result->fetch_assoc()) {
-                $salto = $salto + 1; ?>
+                $salto = $salto + 1;
+
+                $Palabra_adaptada = str_split($fila["Type_Service"]);
+                $Servicio = "";
+                for ($i = 0; $i < count($Palabra_adaptada); $i++) {
+                    if ($Palabra_adaptada[$i] == "_") {
+                        $Servicio = $Servicio . " ";
+                    } else {
+                        $Servicio = $Servicio . $Palabra_adaptada[$i];
+                    }
+                }
+                $Type_Service = $Servicio;
+
+            ?>
                 <label>
-                    <input name=<?php echo '"' . $fila["Type_Service"] . '"'; ?> id=<?php echo '"' . $fila["Type_Service"] . '"'; ?> type="checkbox">
-                    <?php echo $fila["Type_Service"];
+                    <input name=<?php echo '"' . $Type_Service . '"'; ?> id=<?php echo '"' . $Type_Service . '"'; ?> type="checkbox">
+                    <?php echo $Type_Service;
                     if ($salto % 2 == 0) {
                         echo "<br>";
                     }

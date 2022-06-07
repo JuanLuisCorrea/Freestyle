@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap'); /* Fuente */
+@import url('normalize.css'); /* Normalizador */
+
+:root {
+  /* Paleta de colores */
+  --primario: #333C4A;
+  --secundario: #495664;
+  --amarillo-claro: #f6f7d3;
+  --blanco: #F8FCEB;
+
+  /* Font family */
+  --inter: 'Inter', sans-serif;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+html{
+  box-sizing: border-box;
+  font-size: 62.5%; /* 1rem = 10px */
+}
+
+body{
+  font-size: 16px;/* 1rem = 10px */
+  font-family: var(--inter);
+}
+
+h1{
+  font-size: 3.8rem;
+  text-align: center;
+}
+
+h2{
+  font-size: 2.8rem;
+  text-align: center;
+}
+
+h3{
+  font-size: 2rem;
+  text-align: center;
+}
+
+.body-index {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  background-color: var(--primario);
+  min-height: 100vh;
+}
+
+.body-menu {
+  background-color: var(--blanco);
+  min-height: 100vh;
+}
+
+.login {
+  /* display: flex;
+  flex-direction: row; */
+  display: grid;
+  grid-template-columns: .75fr 1.25fr;
+  column-gap: 2rem;
+
+  background-color: var(--blanco);
+  border-radius: 1rem;
+}
+
+.login-logo {
+  max-height: 50vh;
+  border-radius: 1rem 0 0 1rem;
+}
+
+.login-form input {
+  line-height: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.register {
+  background-color: var(--blanco);
+  border-radius: 1rem;
+  padding: 3rem;
+}
+
+.register input {
+  line-height: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.nav-bg {
+  background-color: var(--primario);
+}
+
+.nav-principal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 2rem;
+  font-weight: bold;
+  padding: 2rem;
+  color: var(--blanco);
+}
+
+.nav-title, .nav-links {
+  display: inline;
+}
+
+.nav-links a {
+  color: var(--blanco);
+  margin-left: 5rem;
+}
+
+.menu-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+  min-height: 80vh;
+}
+
+.menu-servicestable {
+  width: 60%;
+}
+
+.menu-servicestable-admin {
+  width: 80%;
+}
+
+.menu-servicestable,
+.menu-servicestable-admin {
+  font-size: 3rem;
+}
+
+.menu-servicestable tr, 
+.menu-servicestable-admin tr {
+  height: 7rem;
+}
+
+.menu-servicestable-admin a {
+  color: var(--primario);
+  text-decoration: none;
+}
+
+.menu-servicestable-admin a:hover {
+  background: var(--primario);
+  color: var(--blanco);
+}
+
+.menu-main-title {
+  color: var(--secundario);
+  font-size: 3.5rem;
+  font-weight: 700;
+}

@@ -1,6 +1,10 @@
 <html>
+<head>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body class="body-index">
 
-<body>
+<div class="register">
 
   <?php
   //Datos formulario
@@ -15,8 +19,9 @@
   $result = $conn->query($sql);
   $fila = $result->fetch_assoc();
   if ($fila == false) {
-    include("../index.php");
     echo "Error de autenticación";
+    echo "<br><br><br><br>";
+    echo "<a href=\"../index.php\">Volver a intentar</a>";
   } else {
     //Abrir sesión
     session_start();
@@ -36,6 +41,7 @@
   $conn->close();
   ?>
 
+</div>
 
 </body>
 

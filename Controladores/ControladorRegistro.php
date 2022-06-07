@@ -1,7 +1,10 @@
 <html>
+<head>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body class="body-index">
 
-<body>
-
+<div class="register">
   <?php
 
   //Datos formulario
@@ -25,23 +28,20 @@
   if ($fila == false) {
     $sql = "INSERT INTO client(cedula,name,telephone,email,date,Contraseña) values('" . $identification . "','" . $name . "','" . $telephone . "','" . $email . "','" . $birthday . "','" . $pass . "')";
     if ($conn->query($sql) === TRUE) {
-      include("../CRUD/Registro.php");
       echo "Registro exitoso!";
-      echo "<br>";
+      echo "<br><br><br><br>";
       echo "<a href=\"../index.php\">Login</a>";
     } else {
       echo "Error " . $conn->error;
     }
   } else {
-    include("../CRUD/Registro.php");
     echo "No se pudo registrar, Email o Cédula ya existentes";
-    echo "<br>";
+    echo "<br><br><br><br>";
     echo "<a href=\"../index.php\">Login</a>";
   }
   $conn->close();
   ?>
-
+  </div>
 
 </body>
-
 </html>
