@@ -1,7 +1,6 @@
 <?php
 session_start();
 $cedula = $_SESSION["Cedula"];
-$admin = $_SESSION["admin"];
 $adminMenu = 0;
 // Base de datos
 include '../Sql/db.php';
@@ -11,14 +10,15 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-if ($admin != 1) {
-    $sql = "SELECT * from servicio";
-    $result = $conn->query($sql);
-} else {
-    $sql = "SELECT * from servicio";
-    $result = $conn->query($sql);
+
+$sql = "SELECT administrador FROM client WHERE Cedula = '" . $cedula . "'";
+$result = $conn->query($sql);
+$a = $result->fetch_assoc();
+if ($a == true) {
     $adminMenu = 1;
 }
+$sql = "SELECT * from servicio";
+$result = $conn->query($sql);
 /* * *******************************
 
   CREAR TABLA DINAMICA
@@ -67,31 +67,10 @@ if ($result->num_rows > 0) {
         echo "</tr>\n";
         $fila = $fila + 1;
     }
-
-    if ($adminMenu == 1) {
-        echo "</table>\n";
-        echo "<br>";
-        echo "<a href=\"../CRUD_Admin/MenuAdmin.php\">Menú</a>";
-        echo "</div>\n";
-    } else {
-        echo "</table>\n";
-        echo "<br>";
-        echo "<a href=\"../menu.php\">Menú</a>";
-        echo "</div>\n";
-    }
 } else {
 
-    if ($adminMenu == 1) {
-        echo "Aún no tienes citas agendadas!";
-        echo "<br>";
-        echo "<a href=\"../CRUD_Admin/MenuAdmin.php\">Menú</a>";
-        echo "</div>\n";
-    } else {
-        echo "Aún no tienes citas agendadas!";
-        echo "<br>";
-        echo "<a href=\"../menu.php\">Menú</a>";
-        echo "</div>\n";
-    }
+    echo "Aún no tienes citas agendadas!";
+    echo "</div>\n";
 }
 
 echo "</body>\n";
