@@ -12,6 +12,8 @@
   --inter: 'Inter', sans-serif;
 }
 
+/* Globales */
+
 *, *:before, *:after {
   box-sizing: inherit;
 }
@@ -41,6 +43,8 @@ h3{
   text-align: center;
 }
 
+/* Login */
+
 .body-index {
   display: flex;
   justify-content: center;
@@ -50,18 +54,13 @@ h3{
   min-height: 100vh;
 }
 
-.body-menu {
-  background-color: var(--blanco);
-  min-height: 100vh;
-}
-
 .login {
   /* display: flex;
   flex-direction: row; */
   display: grid;
   grid-template-columns: .75fr 1.25fr;
   column-gap: 2rem;
-
+  
   background-color: var(--blanco);
   border-radius: 1rem;
 }
@@ -76,6 +75,8 @@ h3{
   margin-bottom: 2.5rem;
 }
 
+/* Registro */
+
 .register {
   background-color: var(--blanco);
   border-radius: 1rem;
@@ -85,6 +86,13 @@ h3{
 .register input {
   line-height: 2.5rem;
   margin-bottom: 2.5rem;
+}
+
+/* Menú principal */
+
+.body-menu {
+  background-color: var(--blanco);
+  min-height: 100vh;
 }
 
 .nav-bg {
@@ -151,4 +159,73 @@ h3{
   color: var(--secundario);
   font-size: 3.5rem;
   font-weight: 700;
+}
+
+/* Agendar cita */
+
+.body-agendar {
+  background-color: var(--blanco);
+  min-height: 100vh;
+}
+
+.formulario-bg {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+  min-height: 50vh;
+}
+
+.formulario-cita {
+  display: flex;
+  flex-direction: column;
+}
+
+.formulario-cita label,
+.formulario-cita-services {
+  font-size: 2.5rem;
+}
+
+.formulario-cita-services span {
+  display: block;
+  font-weight: 700;
+  line-height: 5rem;
+}
+
+.formulario-service {
+  /* display: block; */
+  line-height: 3.5rem;
+}
+
+.formulario-date span,
+.formulario-hour span {
+  display: block;
+  font-weight: 700;
+  line-height: 5rem;
+}
+
+.formulario-date input,
+.formulario-hour input {
+  width: 100%;
+}
+
+.formulario-btn {
+  background-color: var(--primario);
+  border: 0 none;
+  color: var(--blanco);
+  height: 5rem;
+}
+
+.formulario-btn:hover {
+  cursor: pointer;
+  background-color: var(--secundario);
+}
+
+.error-msg {
+  background-color: red;
+  color: var(--blanco);
+  font-size: 2rem;
+  max-width: fit-content;
+  padding: 1rem;
 }

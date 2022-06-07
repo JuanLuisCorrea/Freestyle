@@ -25,7 +25,9 @@ $result = $conn->query($sql);
 $fila = $result->fetch_assoc();
 if ($fila == true) {
   include("../CRUD/Update.php");
-  echo "Hora no disponible";
+  echo "<center>";
+  echo "<p class=\"error-msg\">Hora no disponible</p>";
+  echo "</center>";
 } else { //Agendar cita si está disponible
 
   //Calcular duración y precio de la cita según los servicios
@@ -57,10 +59,7 @@ if ($fila == true) {
           WHERE ID ='" . $id . "'";
 
   if ($conn->query($sql) === TRUE) {
-    include("../CRUD/Update.php");
-    echo "Cita actualizada!";
-    echo "<br>";
-    echo "<a href=\"../menu.php\">Menú</a>";
+    header("Location: ../CRUD/Listar_Citas.php");
   } else {
     echo "Error al actualizar el registro";
     echo "Error " . $conn->error;
