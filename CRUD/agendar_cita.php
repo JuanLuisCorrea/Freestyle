@@ -56,7 +56,7 @@ $result = $conn->query($sql);
                     
                 ?>
                     <label class="formulario-service">
-                        <input name=<?php echo '"' . $Type_Service . '"'; ?> id=<?php echo '"' . $Type_Service . '"'; ?> type="checkbox">
+                        <input class="service" name=<?php echo '"' . $Type_Service . '"'; ?> id=<?php echo '"' . $Type_Service . '"'; ?> type="checkbox">
                         <?php echo $Type_Service;
                             if ($salto % 2 == 0) {
                                 echo "<br>";
@@ -76,16 +76,31 @@ $result = $conn->query($sql);
                 <input id="hour" name="hour" type="time" min="8:00" max="20:00" required />
             </label>
             <br />
-            <input class="formulario-btn" type="submit" value="Agendar cita" />
+            <input class="formulario-btn" id="formulario-btn" type="submit" value="Agendar cita"/>
         </form>
     </div>
-
     <script>
         // VALIDAR FORMULARIO
 
         // Validar que no agende una fecha anterior al día actual
         let minDate = new Date().toISOString().split("T")[0];
         document.getElementById("date").setAttribute('min', minDate);
+
+        // Validar que haya seleccionado al menos un servicio
+        let form = document.getElementById("formulario");
+        form.addEventListener('submit', function(evt) {
+            let check = document.getElementsByClassName('service');
+            count = 0;
+            for(let x = 0; x < check.length; x++) {
+                if(check[x].checked == false) {
+                    count = count + 1;
+                }
+            }
+            if(count == check.length) {
+                evt.preventDefault();
+                alert("Debe seleccionar al menos un servicio");
+            }
+        });
     </script>
 </body>
 

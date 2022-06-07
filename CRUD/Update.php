@@ -101,16 +101,16 @@ $result = $conn->query($sql);
         document.getElementById("Date").setAttribute('min', minDate);
 
         // Validar que haya seleccionado al menos un servicio
-        let form = document.getElementByClassName('formulario-cita');
+        let form = document.getElementById("formulario");
         form.addEventListener('submit', function(evt) {
-            let check = document.querySelectorAll('input.service');
+            let check = document.getElementsByClassName('service');
             count = 0;
-            check.forEach((x) => {
-                if(check[x].checked) {
+            for(let x = 0; x < check.length; x++) {
+                if(check[x].checked == false) {
                     count = count + 1;
                 }
-            });
-            if(count > 0) {
+            }
+            if(count == check.length) {
                 evt.preventDefault();
                 alert("Debe seleccionar al menos un servicio");
             }
