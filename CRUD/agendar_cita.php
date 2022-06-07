@@ -1,4 +1,14 @@
 <?php
+// Base de datos
+include '../Sql/db.php';
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Verificar conexión
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+$sql = "SELECT Type_Service from servicio";
+$result = $conn->query($sql);
 
 ?>
 <html>
@@ -15,23 +25,33 @@
             <legend>Agendar cita</legend>
             Servicios
             <br>
-            <label>
-                <input name="corte_de_cabello" id="corte_de_cabello" type="checkbox">
-                Corte de cabello
-            </label>
-            <label>
-                <input name="corte_de_barba" id="corte_de_barba" type="checkbox">
-                Corte de barba
-            </label>
-            <br>
-            <label>
-                <input name="mascarilla_facial" id="mascarilla_facial" type="checkbox">
-                Mascarilla facial
-            </label>
-            <label>
-                <input name="cejas" id="cejas" type="checkbox">
-                Cejas
-            </label>
+            <?php
+            $Palabra_adaptada = str_split($Type_Service);
+            $Servicio = "";
+            for ($i = 0; $i < count($Palabra_adaptada); $i++) {
+                if ($Palabra_adaptada[$i] == " ") {
+                    $Servicio = $Servicio . "_";
+                } else {
+                    $Servicio = $Servicio . $Palabra_adaptada[$i];
+                }
+            }
+            $Type_Service = $Servicio;
+
+
+            $salto = 0;
+            while ($fila = $result->fetch_assoc()) {
+                $salto = $salto + 1; ?>
+                <label>
+                    <input name=<?php echo '"' . $fila["Type_Service"] . '"'; ?> id=<?php echo '"' . $fila["Type_Service"] . '"'; ?> type="checkbox">
+                    <?php echo $fila["Type_Service"];
+                    if ($salto % 2 == 0) {
+                        echo "<br>";
+                    }
+
+                    ?>
+                </label>
+
+            <?php } ?>
             <br>
             <label>
                 Fecha
