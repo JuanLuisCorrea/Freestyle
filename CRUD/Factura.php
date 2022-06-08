@@ -30,17 +30,71 @@ ob_start();
         $result = $conn->query($sql);
         $cita = $result->fetch_assoc();
 
-        echo "<h1>FREESTYLE BARBERSHOP</h1>";
-        echo "<h2>Factura #" . $cita["ID"] . "</h2>";
-        echo "<ul>";
-        echo "<li>C.C Cliente: " . $cita["Client"] . "</li>";
-        echo "<li>Servicios: " . $cita["Services"] . "</li>";
-        echo "<li>Fecha: " . $cita["Date"] . "</li>";
-        echo "<li>Hora: " . $cita["Hour"] . "</li>";
-        echo "<li>Precio: $" . $cita["Price"] . "</li>";
-        echo "</ul>";
-    }
-    ?>
+        $sql2 = "SELECT Name FROM client WHERE Cedula=".$cita["Client"];
+        $result2 = $conn->query($sql2);
+        $row = $result2->fetch_assoc();
+
+        ?>
+
+        <div id="app" class="col-11">
+            <h2>Factura</h2>
+
+            <div class="row my-3">
+                <div class="col-10">
+                    <h1>Freestyle Barbershop</h1>
+                    <p>Cartagena de Indias</p>
+                    <p>Barrio Los caracoles</p>
+                </div>
+                <div class="col-2">
+                    <img src="../img/freestyle_logo.jpeg" />
+                </div>
+            </div>
+            <hr/>
+            <div class="row fact-info mt-3">
+                <div class="col-3">
+                    <h5>Facturar a</h5>
+                    <p>
+                        <?php echo $row["Name"]; ?>
+                    </p>
+                </div>
+                <div class="col-3">
+                    <h5>N° de factura: <?php echo $cita["ID"]; ?></h5>
+                    <h5>Fecha de facturación: <?php echo date('Y-m-d', time()); ?></h5>
+                    <h5>Fecha de la cita: <?php echo $cita["Date"]; ?></h5>
+                </div>
+            </div>
+
+            <div class="row my-5">
+                <table class="table table-borderless factura">
+                    <thead>
+                        <tr>
+                            <th>Servicios</th>
+                            <th>Total a pagar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><?php echo $cita["Services"]; ?></td>
+                            <td><?php echo "$".$cita["Price"]; ?></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="cond row">
+                <div class="col-12 mt-3">
+                    <h4>Condiciones y formas de pago</h4>
+                    <p>El pago se debe realizar antes de la cita</p>
+                    <p>
+                        Bancolombia
+                        <br />
+                        NIT: 83648563845
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    <?php } ?>
 
 </body>
 
