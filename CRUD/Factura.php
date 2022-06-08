@@ -88,7 +88,7 @@ ob_start();
                     <p>
                         Bancolombia
                         <br />
-                        NIT: 83648563845
+                        NIT: 8364856384-5
                     </p>
                 </div>
             </div>

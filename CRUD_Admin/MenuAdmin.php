@@ -24,6 +24,11 @@
       require '../CRUD_Admin/ListarServicios.php';
     ?>
   </div>
+  <footer>
+    <span>Contacto</span>
+    <span>Correo: freestylebs67@gmail.com</span>
+    <span>Teléfono: 301 123 4567</span>
+  </footer>
 </body>
 
 

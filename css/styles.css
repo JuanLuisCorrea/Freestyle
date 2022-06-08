@@ -242,3 +242,16 @@ h3{
   line-height: 2.5rem;
   margin-bottom: 2.5rem;
 }
+
+/* Footer */
+
+footer {
+  background-color: var(--primario);
+  color: var(--blanco);
+  height: 6rem;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
