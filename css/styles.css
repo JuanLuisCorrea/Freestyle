@@ -141,16 +141,19 @@ h3{
 }
 
 .menu-servicestable tr, 
-.menu-servicestable-admin tr {
+.menu-servicestable-admin tr,
+.citas-table tr {
   height: 7rem;
 }
 
-.menu-servicestable-admin a {
+.menu-servicestable-admin a,
+.citas-table a {
   color: var(--primario);
   text-decoration: none;
 }
 
-.menu-servicestable-admin a:hover {
+.menu-servicestable-admin a:hover,
+.citas-table a:hover {
   background: var(--primario);
   color: var(--blanco);
 }
@@ -228,4 +231,9 @@ h3{
   font-size: 2rem;
   max-width: fit-content;
   padding: 1rem;
+}
+
+.citas-table {
+  font-size: 2rem;
+  max-width: 90%;
 }

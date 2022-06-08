@@ -57,10 +57,12 @@
 
     if ($conn->query($sql) === TRUE) {
       include("../CRUD/agendar_cita.php");
+      echo "<center>";
       echo "<br>";
       echo "Cita agendada!";
       echo "<br>";
       echo "<a href=\"../menu.php\">Menú</a>";
+      echo "</center>";
     } else {
       echo "Error " . $conn->error;
     }

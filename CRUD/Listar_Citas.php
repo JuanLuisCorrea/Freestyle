@@ -1,3 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Citas agendadas</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div class="nav-bg">
+        <nav class="nav-principal">
+            <p class="nav-title">FreeStyle Barbershop</p>
+            <div class="nav-links">
+                <a href="../menu.php">Menú principal</a>
+                <a href="agendar_cita.php">Agendar Cita</a>
+                <a href="../index.php">Salir</a>
+            </div>
+        </nav>
+    </div>
+    <div class="menu-main">
+        <p class="menu-main-title">Mis citas agendadas</p>
+
 <?php
 session_start();
 $cedula = $_SESSION["Cedula"];
@@ -31,21 +54,12 @@ if ($row["administrador"] != 1) {
 
  * ******************************* */
 
-echo "<html>\n";
-echo "\t<head>\n";
-echo "\t\t<title>Citas agendadas</title>\n";
-echo "\t\t<meta http-equiv= \"refresh\" content=\"5\" />\n";
-echo "\t\t<meta charset=\"UTF-8\"/>\n";
-echo "\t</head>\n";
-echo "\t<body>\n";
-
 error_reporting(0);
 if ($result->num_rows > 0) {
     echo "<div align=\"center\">\n";
-    echo "<table border=2>\n";
+    echo "<table class=\"citas-table\">\n";
     echo "<tr BGCOLOR=\"#D3D3D3\">\n";
     echo "<td align=\"center\">id</td>\n";
-    echo "<td align=\"center\">Cedula</td>\n";
     echo "<td align=\"center\">Servicios</td>\n";
     echo "<td align=\"center\">Fecha</td>\n";
     echo "<td align=\"center\">Hora</td>\n";
@@ -54,16 +68,8 @@ if ($result->num_rows > 0) {
     echo "<td colspan=\"3\" align=\"center\">Acción</td>\n";
     echo "</tr>";
 
-    $fila = 1;
     while ($row = $result->fetch_assoc()) {
-        if ($fila % 2 == 0) {
-            echo "<tr BGCOLOR=\"#D3D3D3\">\n";
-        } else {
-            echo "<tr>\n";
-        }
-
         echo "<td align=\"center\">" . $row["ID"] . "</td>";
-        echo "<td align=\"center\">" . $row["Client"] . "</td>";
         echo "<td align=\"center\">" . $row["Services"] . "</td>";
         echo "<td align=\"center\">" . $row["Date"] . "</td>";
         echo "<td align=\"center\">" . $row["Hour"] . "</td>";
@@ -73,17 +79,9 @@ if ($result->num_rows > 0) {
         echo  "<td> <a href=\"Update.php?id=" . $row["ID"] . "\">Editar </td>\n";
         echo  "<td> <a href=\"Factura.php?id=" . $row["ID"] . "\">Factura </td>\n";
         echo "</tr>\n";
-        $fila = $fila + 1;
     }
     echo "</table>\n";
     echo "<br>";
-    if ($adminMenu == 1) {
-        echo "<a href=\"../CRUD_Admin/MenuAdmin.php\">Menú</a>";
-        echo "</div>\n";
-    } else {
-        echo "<a href=\"../menu.php\">Menú</a>";
-        echo "</div>\n";
-    }
 } else {
 
     if ($adminMenu == 1) {
@@ -103,3 +101,8 @@ echo "</body>\n";
 echo "</html>\n";
 
 $conn->close();
+?>
+    </div>
+
+</body>
+</html>
