@@ -19,5 +19,5 @@ if (isset($_GET['id'])) {
         die("Delete fallido!");
     }
 
-    header("Location: ListarServicios.php");
+    header("Location: MenuAdmin.php");
 }

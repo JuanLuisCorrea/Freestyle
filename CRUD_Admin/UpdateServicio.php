@@ -31,36 +31,35 @@ if (isset($_GET['id'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar servicio</title>
+    <link rel="stylesheet" href="../css/styles.css">
 </head>
 
 <body>
-    <div class="register">
-        <form action="../Controladores/ControladorUpdateServicio.php?" method="GET">
-            <fieldset>
-                <legend>Editar servicio</legend>
-                <label>
-                    Nombre
-                    <input id="Type_Service" name="Type_Service" type="txt" value="<?php echo $Type_Service; ?>" required>
-                </label>
-
-                <label>
-                    ㅤㅤㅤ Valor
-                    <input id="Price" name="Price" type="number" value="<?php echo $Price; ?>" required>
-                </label>
-                <br>
-                <label>
-                    Duración
-                    <input id="Duration_Service" name="Duration_Service" type="number" min="1" value="<?php echo $Duration_Service; ?>" required>
-                </label>
-                <label>
-
-                    ㅤㅤㅤ Empleado
-                    <input id="Employee" name="Employee" type="txt" value="<?php echo $Employee; ?>" required>
-                </label>
-                <br><br>
-                <input id="id" name="id" type="hidden" value="<?php echo $_GET['id']; ?>">
-                <input type="submit" value="Editar">
-            </fieldset>
+    <div class="nav-bg">
+        <nav class="nav-principal">
+            <p class="nav-title">FreeStyle Barbershop</p>
+            <div class="nav-links">
+                <a href="../CRUD/Listar_Citas.php">Citas</a>
+                <a href="../CRUD_Admin/MenuAdmin.php">Menú principal</a>
+                <a href="../index.php">Salir</a>
+            </div>
+        </nav>
+    </div>
+    <div class="formulario-bg">
+        <form class="formulario-cita" action="../Controladores/ControladorUpdateServicio.php?" method="GET">
+            <legend>
+                <h1>Editar servicio</h1>
+            </legend>
+            <input id="Type_Service" name="Type_Service" type="text" placeholder="Nombre del servicio" value="<?php echo $Type_Service; ?>" required>
+            <br>
+            <input id="Price" name="Price" type="number" placeholder="Valor del servicio" value="<?php echo $Price; ?>" required>
+            <br>
+            <input id="Duration_Service" name="Duration_Service" type="number" placeholder="Duración del servicio min="1" value="<?php echo $Duration_Service; ?>" required>
+            <br>
+            <input id="Employee" name="Employee" type="text" placeholder="Empleado a cargo" value="<?php echo $Employee; ?>" required>
+            <br>
+            <input id="id" name="id" type="hidden" value="<?php echo $_GET['id']; ?>">
+            <input class="formulario-btn" type="submit" value="Editar">
         </form>
     </div>
 

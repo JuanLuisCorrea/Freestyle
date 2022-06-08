@@ -37,10 +37,7 @@
     if ($fila == false) {
         $sql = "INSERT INTO servicio(Price,Type_Service,Duration_Service,Employee) values('" . $Price . "','" . $Type_Service . "','" . $Duration_Service . "','" . $Employee . "')";
         if ($conn->query($sql) === TRUE) {
-            include("../CRUD_Admin/RegistroServicios.php");
-            echo "Registro exitoso!";
-            echo "<br>";
-            echo "<a href=\"../CRUD_Admin/MenuAdmin.php\">Menú</a>";
+            header("Location: ../CRUD_Admin/MenuAdmin.php");
         } else {
             echo "Error " . $conn->error;
         }

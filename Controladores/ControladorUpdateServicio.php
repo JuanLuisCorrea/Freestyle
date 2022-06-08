@@ -34,10 +34,7 @@ $sql = "UPDATE servicio
           WHERE ID ='" . $id . "'";
 
 if ($conn->query($sql) === TRUE) {
-    include("../CRUD_Admin/UpdateServicio.php");
-    echo "Servicio actualizado!";
-    echo "<br>";
-    echo "<a href=\"../CRUD_Admin/MenuAdmin.php\">Menú</a>";
+    header("Location: ../CRUD_Admin/MenuAdmin.php");
 } else {
     echo "Error al actualizar el Servicio";
     echo "Error " . $conn->error;

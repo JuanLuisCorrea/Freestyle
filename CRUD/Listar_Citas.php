@@ -8,18 +8,6 @@
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
-    <div class="nav-bg">
-        <nav class="nav-principal">
-            <p class="nav-title">FreeStyle Barbershop</p>
-            <div class="nav-links">
-                <a href="../menu.php">Menú principal</a>
-                <a href="agendar_cita.php">Agendar Cita</a>
-                <a href="../index.php">Salir</a>
-            </div>
-        </nav>
-    </div>
-    <div class="menu-main">
-        <p class="menu-main-title">Mis citas agendadas</p>
 
 <?php
 session_start();
@@ -43,23 +31,47 @@ $row = $result->fetch_assoc();
 if ($row["administrador"] != 1) {
     $sql = "SELECT * from cita WHERE Client='" . $cedula . "'";
     $result = $conn->query($sql);
+    echo "<div class=\"nav-bg\">";
+    echo "<nav class=\"nav-principal\">";
+    echo "<p class=\"nav-title\">FreeStyle Barbershop</p>";
+    echo "<div class=\"nav-links\">";
+    echo "<a href=\"../menu.php\">Menú principal</a>";
+    echo "<a href=\"agendar_cita.php\">Agendar Cita</a>";
+    echo "<a href=\"../index.php\">Salir</a>";
+    echo "</div>";
+    echo "</nav>";
+    echo "</div>";
+    echo "<div class=\"menu-main\">";
+    echo "<p class=\"menu-main-title\">Citas agendadas</p>";
 } else {
     $sql = "SELECT * from cita";
     $result = $conn->query($sql);
     $adminMenu = 1;
+    echo "<div class=\"nav-bg\">";
+    echo "<nav class=\"nav-principal\">";
+    echo "<p class=\"nav-title\">FreeStyle Barbershop</p>";
+    echo "<div class=\"nav-links\">";
+    echo "<a href=\"../CRUD_Admin/MenuAdmin.php\">Menú principal</a>";
+    echo "<a href=\"../CRUD_Admin/RegistroServicios.php\">Añadir servicio</a>";
+    echo "<a href=\"../index.php\">Salir</a>";
+    echo "</div>";
+    echo "</nav>";
+    echo "</div>";
+    echo "<div class=\"menu-main\">";
+    echo "<p class=\"menu-main-title\">Citas agendadas</p>";
 }
-/* * *******************************
 
+/*********************
   CREAR TABLA DINAMICA
-
- * ******************************* */
+**********************/
 
 error_reporting(0);
 if ($result->num_rows > 0) {
     echo "<div align=\"center\">\n";
-    echo "<table class=\"citas-table\">\n";
+    echo "<table class=\"citas-table\" border=1>\n";
     echo "<tr BGCOLOR=\"#D3D3D3\">\n";
     echo "<td align=\"center\">id</td>\n";
+    echo "<td align=\"center\">Cedula</td>\n";
     echo "<td align=\"center\">Servicios</td>\n";
     echo "<td align=\"center\">Fecha</td>\n";
     echo "<td align=\"center\">Hora</td>\n";
@@ -70,6 +82,7 @@ if ($result->num_rows > 0) {
 
     while ($row = $result->fetch_assoc()) {
         echo "<td align=\"center\">" . $row["ID"] . "</td>";
+        echo "<td align=\"center\">" . $row["Client"] . "</td>";
         echo "<td align=\"center\">" . $row["Services"] . "</td>";
         echo "<td align=\"center\">" . $row["Date"] . "</td>";
         echo "<td align=\"center\">" . $row["Hour"] . "</td>";
@@ -96,13 +109,10 @@ if ($result->num_rows > 0) {
         echo "</div>\n";
     }
 }
-
-echo "</body>\n";
-echo "</html>\n";
+echo "</div>";
 
 $conn->close();
 ?>
-    </div>
 
 </body>
 </html>
