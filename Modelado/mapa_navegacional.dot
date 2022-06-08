@@ -1,0 +1,17 @@
+digraph Freestyle {
+    splines="FALSE";
+
+    
+    /* Relationships */
+    Login -> Menu;
+    Login -> Registro -> Login;
+    Menu -> Citas;
+    Menu -> Servicios;
+   
+    Menu -> Agendar -> Citas -> Agendar;
+    Login -> MenuAdmin -> AgendarServicio -> Servicios -> RegistrarServicio -> MenuAdmin;
+     
+
+    /* Ranks */
+  
+}

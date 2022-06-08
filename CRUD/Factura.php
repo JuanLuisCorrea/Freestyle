@@ -46,7 +46,7 @@ ob_start();
                     <p>Barrio Los caracoles</p>
                 </div>
                 <div class="col-2">
-                    <img src="../img/freestyle_logo.jpeg" />
+                    <img src="http://localhost/Freestyle/img/freestyle_logo.jpeg" width=90 height=90/>
                 </div>
             </div>
             <hr/>
@@ -108,6 +108,10 @@ require_once 'Libreria/dompdf/autoload.inc.php';
 use Dompdf\Dompdf;
 
 $dompdf = new Dompdf();
+
+$options = $dompdf->getOptions();
+$options->set(array('isRemoteEnabled' => true));
+$dompdf->setOptions($options);
 
 $dompdf->loadHtml($html);
 $dompdf->setPaper('letter');

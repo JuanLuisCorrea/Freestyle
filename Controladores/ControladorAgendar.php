@@ -47,6 +47,16 @@
     }
     $services = substr($services, 0, -1);
 
+    //Verificar descuento por cumpleaños
+
+    $sql = "SELECT Date FROM client WHERE Cedula=" .$cc;
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc();
+
+    if(substr($date, 5) == substr($row["Date"], 5)) {
+      $precio = $precio - ($precio*0.20);
+    }
+
     //Calcular hora de salida según la duración de la cita
     $finish_hour = strtotime("+" . $duracion_total . " minute", strtotime($hour));
     $finish_hour = date('H:i:s', $finish_hour);
@@ -56,13 +66,7 @@
             values('" . $cc . "','" . $services . "','" . $date . "','" . $hour . "','" . $finish_hour . "','" . $duracion_total . "','" . $precio . "')";
 
     if ($conn->query($sql) === TRUE) {
-      include("../CRUD/agendar_cita.php");
-      echo "<center>";
-      echo "<br>";
-      echo "Cita agendada!";
-      echo "<br>";
-      echo "<a href=\"../menu.php\">Menú</a>";
-      echo "</center>";
+      header("Location: ../CRUD/Listar_Citas.php");
     } else {
       echo "Error " . $conn->error;
     }

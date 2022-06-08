@@ -29,7 +29,7 @@ $result = $conn->query($sql);
 $row = $result->fetch_assoc();
 
 if ($row["administrador"] != 1) {
-    $sql = "SELECT * from cita WHERE Client='" . $cedula . "'";
+    $sql = "SELECT * from cita WHERE Client='" . $cedula . "'  ORDER BY Date";
     $result = $conn->query($sql);
     echo "<div class=\"nav-bg\">";
     echo "<nav class=\"nav-principal\">";
@@ -44,7 +44,7 @@ if ($row["administrador"] != 1) {
     echo "<div class=\"menu-main\">";
     echo "<p class=\"menu-main-title\">Citas agendadas</p>";
 } else {
-    $sql = "SELECT * from cita";
+    $sql = "SELECT * from cita ORDER BY Date";
     $result = $conn->query($sql);
     $adminMenu = 1;
     echo "<div class=\"nav-bg\">";
